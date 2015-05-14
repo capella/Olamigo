@@ -14,8 +14,7 @@ var config = require('config');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//var port = config.get("porta_aplicativo");        // set our port
-console.log(JSON.stringify(config));
+var port = config.porta_aplicativo;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
