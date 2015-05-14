@@ -22,7 +22,7 @@ var router = express.Router();              // get an instance of the express Ro
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api  000!' });   
+    res.json({ message: 'hooray! welcome to our api  000!'+config.get("MYSQL.host") });   
 });
 
 // more routes for our API will happen here
