@@ -47,5 +47,10 @@ ORDER BY TIMESTAMPDIFF(SECOND, C.time, CURRENT_TIMESTAMP()) DESC LIMIT 70;
 END
 ```
 
+Vocês podem acessar o banco de dados [aqui](http://melvans.cloudapp.net/phpmyadmin/).
+
 ##Senhas e números...
 Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos ium biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
+
+## Servidor
+MOntei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
