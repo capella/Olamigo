@@ -21,8 +21,10 @@ Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 		* Visual: lista simples contendo o todos os gostos salvos no banco de dados e ao lado dele deve haver checkboxs para selecionar se gosta ou não.
 		* Salvando: *PUT* para */gostos/* com uma lista de ids do qual a pessoa marcou que gostou.
 3. Página Principal: visualiza as atividades por perto.
+	Carregando:  *POST* para */atividades/* contendo *idface*. Retirna um objeto contendo o idatividade...
 
-* Menu Superior: tem um botão de "+" Quando apertado abre uma modal e permite o usuário escrever o que está com vontade de fazer.
+* Menu Superior: tem um botão de "+" Quando apertado abre uma modal e permite o usuário escrever o que está com vontade de fazer. Acho legal ter um fiel de quanto tempo ele quer esperar até encontrar alguém.
+	* Salvando: *POST* para */nova_atividade/* contendo o idface, descrcao e tempo_espera.
 
 ## Banco de Dados
 Acho legal usar MYSQL mesmo, pois já tenho um cógigo interessante para fazer uma pesquisa baseada na distancia entre dois pontos. Segue abaixo esse código (tá bem feio):
