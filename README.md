@@ -2,7 +2,10 @@
 Um aplicativo simples para localizar pessoas ociosas.
 
 ##Referências
-Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/).
+Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/). Dentro de server/index.js tem também alguns exemplos.
+
+IONIC: vamos usar ele para crar o aplicativo. Mais informações [aqui](http://ionicframework.com/).
+
 ##Páginas
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 
@@ -54,4 +57,7 @@ Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir
 
 ## Servidor
 Montei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
+
 Só para resaltar, vamos gerar as respostas das requisições em JSON. Acho que assim fica mais fácil.
+
+Os módulos npm são atualizados automaticamente toda a vez que mudamos o server. Por isso, nao adicione ao repositório sua pasta *server/node_modules*.
