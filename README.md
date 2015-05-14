@@ -14,7 +14,7 @@ Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 ## Banco de Dados
 Acho legal usar MYSQL mesmo, pois já tenho um cógigo interessante para fazer uma pesquisa baseada na distancia entre dois pontos. Segue abaixo esse código (tá bem feio):
 
-```mysql
+```sql
 BEGIN
  SELECT
   C.comentario AS text,
