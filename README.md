@@ -6,6 +6,10 @@ Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/b
 
 IONIC: vamos usar ele para crar o aplicativo. Mais informações [aqui](http://ionicframework.com/).
 
+Plugins nodejs: (expressjs)[http://expressjs.com/], (config)[https://github.com/lorenwest/node-config]
+Plugins cordova: (ngCordova)[http://ngcordova.com/docs/install/], (org.apache.cordova.geolocation)[http://ngcordova.com/docs/plugins/geolocation/], (phonegap-facebook-plugin)[http://ngcordova.com/docs/plugins/facebook/]
+
+
 ##Páginas
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 
@@ -14,7 +18,10 @@ Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 	* Selecionar Gostos: página que mostra uma lista gostos interessantes. 
 		* Carregando: *POST* para */gostos/* contendo *idface*. O servidor deve retornar uma lista de objetos contendo 3 campos: (nome, id, gosta) onde o nome dever ser a descrição do gosto, o id deve ser o id dele no banco de dados e gosta deve ser 0 ou 1, identificando se o usuário ja marcou esse como um gosto seu. 
 		* Visual: lista simples contendo o todos os gostos salvos no banco de dados e ao lado dele deve haver checkboxs para selecionar se gosta ou não.
-		* Salvando: *PUT* para */gostos/* com uma lista de id do qual a pessoa marcou que gostou.
+		* Salvando: *PUT* para */gostos/* com uma lista de ids do qual a pessoa marcou que gostou.
+3. Página Principal: visualiza as atividades por perto.
+
+* Menu Superior: tem um botão de "+" Quando apertado abre uma modal e permite o usuário escrever o que está com vontade de fazer.
 
 ## Banco de Dados
 Acho legal usar MYSQL mesmo, pois já tenho um cógigo interessante para fazer uma pesquisa baseada na distancia entre dois pontos. Segue abaixo esse código (tá bem feio):
@@ -55,7 +62,7 @@ END
 Vocês podem acessar o banco de dados [aqui](http://melvans.cloudapp.net/phpmyadmin/).
 
 ##Senhas e números...
-Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos ium biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
+Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos uma biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
 
 ## Servidor
 Montei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
