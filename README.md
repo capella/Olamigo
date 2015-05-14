@@ -3,6 +3,7 @@ Um aplicativo simples para localizar pessoas ociosas.
 
 ##Referências
 Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/). Dentro de server/index.js tem também alguns exemplos.
+
 IONIC: vamos usar ele para crar o aplicativo. Mais informações [aqui](http://ionicframework.com/).
 
 ##Páginas

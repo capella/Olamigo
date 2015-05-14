@@ -26,15 +26,20 @@ var router = express.Router();              // get an instance of the express Ro
 });
 */
 
+app.get('/', function(req, res) {
+    res.json({ message: 'Você não é bem vindo aqui!' });   
+});
+
+gostos.post('/', function(req, res, next) {
+	res.json({ message: 'Gostoso' });  
+});
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 //app.use('/api', router);
-
-app.get('/', function(req, res) {
-    res.json({ message: 'Você não é bem vindo aqui!' });   
-});
+app.use('/gostos', gostos);
 
 // START THE SERVER
 // =============================================================================
