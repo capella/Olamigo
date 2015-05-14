@@ -21,15 +21,20 @@ var port = config.porta_aplicativo;        // set our port
 var router = express.Router();              // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api  003!'+config.MYSQL.host });   
+/*router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api  00!'+config.MYSQL.host });   
 });
+*/
 
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+//app.use('/api', router);
+
+app.get('/', function(req, res) {
+    res.json({ message: 'Você não é bem vindo aqui!' });   
+});
 
 // START THE SERVER
 // =============================================================================

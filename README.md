@@ -2,7 +2,7 @@
 Um aplicativo simples para localizar pessoas ociosas.
 
 ##Referências
-Tem uma tutorial muito bom de requisições REST [aqui](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4).
+Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/).
 ##Páginas
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 
@@ -53,4 +53,5 @@ Vocês podem acessar o banco de dados [aqui](http://melvans.cloudapp.net/phpmyad
 Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos ium biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
 
 ## Servidor
-MOntei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
+Montei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
+Só para resaltar, vamos gerar as respostas das requisições em JSON. Acho que assim fica mais fácil.
