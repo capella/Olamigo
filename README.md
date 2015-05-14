@@ -10,6 +10,7 @@ Plugins nodejs: [expressjs](http://expressjs.com/), [config](https://github.com/
 
 Plugins cordova: [ngCordova](http://ngcordova.com/docs/install/), [org.apache.cordova.geolocation](http://ngcordova.com/docs/plugins/geolocation/), [phonegap-facebook-plugin](http://ngcordova.com/docs/plugins/facebook/)
 
+Para testar as requisições REST tem um bom [programa para mac](https://github.com/mmattozzi/cocoa-rest-client/releases).
 
 ##Páginas
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
