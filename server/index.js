@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = config.get("porta_aplicativo");        // set our port
+console.log(JSON.stringify(config));
 
 // ROUTES FOR OUR API
 // =============================================================================
