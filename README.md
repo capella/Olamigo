@@ -60,4 +60,4 @@ Montei um script que fica monitorando as atualizações no git. Quando a pasta *
 
 Só para resaltar, vamos gerar as respostas das requisições em JSON. Acho que assim fica mais fácil.
 
-Os módulos npm são atualizados automaticamente toda a vez que mudamos o server. Por isso, nao adicione ao repositório sua pasta *server/node_modules*.
+Os módulos npm são atualizados automaticamente toda a vez que mudamos o server. Por isso, não adicione ao repositório sua pasta *server/node_modules*.
