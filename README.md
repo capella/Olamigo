@@ -17,7 +17,7 @@ Para testar as requisições REST tem um bom [programa para mac](https://github.
 ##Páginas
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 
-1. Login: pagina onde o usuario deve realizar o login com a api do facebook. Acho legal ter o logo do app e depois o batão de login do face.
+1. Login: pagina onde o usuario deve realizar o login com a api do facebook. Acho legal ter o logo do app e depois o batão de login do face. Qaundo o usuário loga com o face, ele deve mandar o nome dele, o deviceToken do dispositivo, o userID do face e o accessToken do face.
 2. Configurações
 	* Selecionar Gostos: página que mostra uma lista gostos interessantes. 
 		* Carregando: *POST* para */gostos/* contendo *idface*. O servidor deve retornar uma lista de objetos contendo 3 campos: (nome, id, gosta) onde o nome dever ser a descrição do gosto, o id deve ser o id dele no banco de dados e gosta deve ser 0 ou 1, identificando se o usuário ja marcou esse como um gosto seu. 
