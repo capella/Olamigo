@@ -7,9 +7,7 @@ Um aplicativo simples para localizar pessoas ociosas.
 Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 
 1. Login: pagina onde o usuario deve realizar o login com a api do facebook. Acho legal ter o logo do app e depois o batão de login do face.
-
-2.Configurações
-
+2. Configurações
 ⋅⋅* Selecionar Gostos: página que mostra uma lista gostos interessantes. Realiza uma requição *POST* para a u
 
 ##Senhas e números...
