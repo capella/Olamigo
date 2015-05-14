@@ -21,7 +21,12 @@ Segue abaixo a lista das páginas queno nosso aplicativo deve conter:
 		* Visual: lista simples contendo o todos os gostos salvos no banco de dados e ao lado dele deve haver checkboxs para selecionar se gosta ou não.
 		* Salvando: *PUT* para */gostos/* com uma lista de ids do qual a pessoa marcou que gostou.
 3. Página Principal: visualiza as atividades por perto.
-	Carregando:  *POST* para */atividades/* contendo *idface*. Retirna um objeto contendo o idatividade...
+	* Carregando:  *POST* para */atividades/* contendo *idface*. Retorna um objeto contendo o idatividade, descrição, responsavel_idface, distancia, horario_maximo e lista de ids de interesses. É interessante salvar toda essa lista em um modulo do angular. Assim fica fácil de pegar os dados.
+	* Visual: quadrados contendo os primeiros x caracteres da atividade uma foto do sujeito responsavel e pequena e seu nome.
+4. Visualizar Atividade: carrega a atividade que usuario clicou na página inicial.
+	* Visual: foto do usuário, local onde mora e trabalho seguido da descrição completa da atividado. É legal colocar os interesses dele. Deve ter um botão bem nítido "SOLICITAR PARTICIPAÇÃO".
+	* Solicitar participação: *POST* para */porticipar/* contendo *idface* e *idatividade*. Quando o server receber isso ele envia via GCM para o repsonsável um pedido. O servidor retorna numero_solicitacao. Avisa que o pedido foi solicitado e vai para Atividades solicitadas com o numero da solicitacao.
+5. Atividades solicitadas: lista de todas as solicitações que o usuário fez ou que recebeu. 
 
 * Menu Superior: tem um botão de "+" Quando apertado abre uma modal e permite o usuário escrever o que está com vontade de fazer. Acho legal ter um fiel de quanto tempo ele quer esperar até encontrar alguém.
 	* Salvando: *POST* para */nova_atividade/* contendo o idface, descrcao e tempo_espera.
