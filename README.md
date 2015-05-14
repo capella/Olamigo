@@ -6,7 +6,7 @@ Tem uma tutorial muito bom de requisições REST [aqui](http://adrianmejia.com/b
 
 IONIC: vamos usar ele para crar o aplicativo. Mais informações [aqui](http://ionicframework.com/).
 
-Plugins nodejs: [expressjs](http://expressjs.com/), [config](https://github.com/lorenwest/node-config)
+Plugins nodejs: [expressjs](http://expressjs.com/), [config](https://github.com/lorenwest/node-config), [node-gcm](https://github.com/ToothlessGear/node-gcm)
 
 Plugins cordova: [ngCordova](http://ngcordova.com/docs/install/), [org.apache.cordova.geolocation](http://ngcordova.com/docs/plugins/geolocation/), [phonegap-facebook-plugin](http://ngcordova.com/docs/plugins/facebook/)
 
