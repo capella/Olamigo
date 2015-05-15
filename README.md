@@ -76,8 +76,8 @@ Vocês podem acessar o banco de dados [aqui](http://melvans.cloudapp.net/phpmyad
 Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos uma biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
 
 ## Servidor
-Montei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**.
+Montei um script que fica monitorando as atualizações no git. Quando a pasta *server* desse diretótio é atualizada, o servidor automaticamente é atualizado. A url do servidor é **http://melvans.cloudapp.net:9090/**. O arquivo node executado é index.js.
 
 Só para resaltar, vamos gerar as respostas das requisições em JSON. Acho que assim fica mais fácil.
 
-Os módulos npm são atualizados automaticamente toda a vez que mudamos o server. Por isso, não adicione ao repositório sua pasta *server/node_modules*.
+Os módulos npm são atualizados automaticamente toda a vez que mudamos o server. Por isso, não adicione ao repositório sua pasta *server/node_modules*. Também não adicione o arquivo ".DS_Store" que o MAC cria. 
