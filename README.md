@@ -72,7 +72,17 @@ END
 
 Vocês podem acessar o banco de dados [aqui](http://melvans.cloudapp.net/phpmyadmin/).
 
+## Facebook OpenGraph
+
+
+GET /v2.3/{UserId}?fields=picture{url}
+			?fields=friends — lista de amigos
+			?fields=likes{access_token,name,category} - paginas e as suas categorias
+			?fields=photos{picture}
+
+
 ##Senhas e números...
+
 Os códigos as senha e os codigos estão armazenadas no servidor. Para conseguir pegar essas informações utilizamos uma biblioteca chamada "config". Ela funciona como um grande objeto, por exemplo, para pegar o nome do banco de dados usamos a variável *config.MYSQL.host*. O protótipo das configurações pode ser visto [aqui](server/config/default.json.example).
 
 ## Servidor
