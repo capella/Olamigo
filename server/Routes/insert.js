@@ -9,13 +9,15 @@ var Person = require('../Models/Person');
 Person.methods(['get', 'post', 'put', 'delete']);
 Person.register(router,'/person');
 
-router.get('/:name', function (req, res) {
+router.post('/', function (req, res)
+{
+    var name = req.body.name;
     var person = new Person(
         {
-            name: req.params.name
+            name: name
         }
     );
-
+    console.log(name);
     person.save(function (err) {
         if (err) {
             res.status(500).send({status: 'error', content: err});
