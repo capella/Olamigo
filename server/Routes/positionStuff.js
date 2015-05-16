@@ -20,8 +20,25 @@ router.post('/updatePos', function (req, res) {
     var geoStr = req.body.geo.split(',');
     var lat = parseFloat(geoStr[0]);
     var lon = parseFloat(geoStr[1]);
+    var face_id = req.body.face_id;
+    var OK = true;
 
-    
+    Person.update({face_id: face_id}, {$set: {location: [lon, lat]}},
+        function (err)
+        {
+            if (err) {
+                OK = false;
+            }
+        });
+
+    if(OK)
+    {
+        res.json({status: 'ok'});
+    }
+    else
+    {
+        res.json({status: 'error'});
+    }
 });
 
 router.post('/getNearest', function (req, res) {
