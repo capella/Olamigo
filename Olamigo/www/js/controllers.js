@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -9,12 +9,18 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
+    $scope.modal.show();
+
+    $cordovaFacebook.getLoginStatus().then(function(success) {
+        console.log(JSON.stringify(success));
+        if(success.status=="connected"){
+            $scope.modal.hide();
+        }   
+      }, function (error) {
+        console.log(JSON.stringify(error));
+    });
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
 
   // Open the login modal
   $scope.login = function() {
@@ -25,12 +31,24 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
+    $cordovaFacebook.login(["public_profile", "email", "user_friends"])
+    .then(function(success) {
+      console.log(JSON.stringify(success));
+      $scope.modal.hide();
+    }, function (error) {
+      // error
+    });
+
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    //$timeout(function() {
+    //  $scope.closeLogin();
+    //}, 1000);
   };
+
+
+
+
 })
 
 .controller('GostosCtrl', function($scope) {
