@@ -28,7 +28,7 @@ var gostos = express.Router();              // get an instance of the express Ro
 */
 
 app.get('/', function(req, res) {
-    res.json({ message: 'Você não é bem vindo aqui!' });   
+    res.json({ message: 'Você não é bem vindo aqui! ' });   
 });
 
 gostos.post('/', function(req, res, next) {
