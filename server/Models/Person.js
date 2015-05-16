@@ -8,7 +8,8 @@ var mongoose = restful.mongoose;
 
 // Schema
 var personSchema = new mongoose.Schema({
-    name: String
+    name: String,
+    location: {type: [Number], index: '2d'}
 });
 
 // Return model

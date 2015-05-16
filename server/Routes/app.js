@@ -7,11 +7,11 @@
  Person.register(router,'/person');
 
  router.get('/', function (req, res) {
-    Person.find({}, function (err, products) {
+    Person.find({}, function (err, person) {
         if (err) {
             res.status(500).send({status: 'error', content: err});
         } else {
-            res.json({status: 'ok', content: products});
+            res.json({status: 'ok', content: person});
         }
     });
 });
