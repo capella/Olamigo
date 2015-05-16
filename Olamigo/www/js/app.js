@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/gostos.html",
-        controller: 'AppCtrl'
+        controller: 'GostosCtrl'
       }
     }
   })

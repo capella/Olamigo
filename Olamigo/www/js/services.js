@@ -3,6 +3,6 @@
 
 	.factory('Gostos', ['$resource', function($resource){
     return $resource('/gostos/:id', null, {
-    'update': { method:'GET' }
+    'update': { method:'POST' }
      });
      }])
