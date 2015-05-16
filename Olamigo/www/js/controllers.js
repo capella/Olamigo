@@ -11,16 +11,21 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
     $scope.modal.show();
 
+      console.log("p"+window.localStorage.getItem("idface") );
+
+    if (window.localStorage.getItem("idface") !== 'undefined') {
+      $scope.modal.hide();
+      console.log("p"+window.localStorage.getItem("idface") );
+    }
+
+  });
+
+
     $cordovaFacebook.getLoginStatus().then(function(success) {
-        console.log(JSON.stringify(success));
-        if(success.status=="connected"){
-            $scope.modal.hide();
-        }   
+        console.log(JSON.stringify(success)); 
       }, function (error) {
         console.log(JSON.stringify(error));
     });
-  });
-
 
   // Open the login modal
   $scope.login = function() {
@@ -34,6 +39,8 @@ angular.module('starter.controllers', [])
     $cordovaFacebook.login(["public_profile", "email", "user_friends"])
     .then(function(success) {
       console.log(JSON.stringify(success));
+      window.localStorage['idface'] =  success.authResponse.userID;
+      console.lo
       $scope.modal.hide();
     }, function (error) {
       // error
@@ -46,29 +53,21 @@ angular.module('starter.controllers', [])
     //}, 1000);
   };
 
-
-
+  $scope.menus = [
+    { url: '#/app/acontecendo', text: 'Home' },
+    { url: '#/app/nova_atividade', text: 'Atividades' },
+    { url: '#/app/gostos', text: 'Gostos' },
+    { url: '#/app/atividades', text: 'Atividades' },
+    { url: '#/app/interacoes', text: 'Interações' },
+    { url: '#/app/chat', text: 'Chat' }
+  ];
 
 })
 
 .controller('GostosCtrl', function($scope) {
 
-  // Store
-localStorage.setItem("id", "face");
-// Retrieve
-$scope.idFacebook = localStorage.getItem("id");
-$scope.acoes = [
-    { image: '../img/comedies.png', id: 1 },
-    { image: '../img/action.png', id: 2 },
-    { image: '../img/terror.png', id: 3 },
-    { image: '../img/romance.png', id: 4 },
-    { image: '../img/rock.pmg', id: 5 },
-    { image: '../img/classic.png', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-  ];
+
+
 
 })
 

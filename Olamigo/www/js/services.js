@@ -1,8 +1,4 @@
- // add ngResource dependency
-  angular.module('app', [])
-
-	.factory('Gostos', ['$resource', function($resource){
-    return $resource('/gostos/:id', null, {
-    'update': { method:'POST' }
-     });
-     }])
+angular.module('services', [])
+	.factory('Conta', function($resource) {
+	  return $resource(pagina+'/conta/:id');
+	});

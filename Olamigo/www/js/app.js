@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordova', 'ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaPush) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,56 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       StatusBar.styleDefault();
     }
   });
+
+
+
+})
+
+.run(function($cordovaPush,$rootScope) {
+
+  var androidConfig = {
+    "senderID": "652530931197",
+  };
+
+  document.addEventListener("deviceready", function(){
+    $cordovaPush.register(androidConfig).then(function(result) {
+      console.log(JSON.stringify(result));
+    }, function(err) {
+      console.log(JSON.stringify(err));
+    })
+
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      switch(notification.event) {
+        case 'registered':
+          if (notification.regid.length > 0 ) {
+            console.log('registration ID = ' + notification.regid);
+          }
+          break;
+
+        case 'message':
+          // this is the actual push notification. its format depends on the data model from the push server
+          console.log('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          console.log('GCM error = ' + notification.msg);
+          break;
+
+        default:
+          console.log('An unknown GCM event has occurred');
+          break;
+      }
+    });
+
+
+    // WARNING: dangerous to unregister (results in loss of tokenID)
+    $cordovaPush.unregister(options).then(function(result) {
+      // Success!
+    }, function(err) {
+      // Error
+    })
+
+  }, false);
 })
 
 
