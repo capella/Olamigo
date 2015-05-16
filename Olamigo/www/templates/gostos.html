@@ -2,48 +2,35 @@
   <ion-content>
     <ion-list>
    <div class="item item-avatar">
-    <img src="../img/ionic.png">
+    <img src="../img/logo.png">
     <h2>{{idFacebook}}</h2>
     <p>November 05, 1955</p>
   </div>
   <br>
-   <div class="row" >
-   	<div class="col col-20">
-	<button class="button button-stable">
-  	Voltar
-	</button>
-	</div>
-	<div class="col col-40"></div>
-	<div class="col col-20">
-		<button class="button button-stable">
-  			Proximo
-  		</button>
-	</div>
-	</div>
 <br>
-  <div class="row" style="margin-bottom:5px">
-  <div class="item item-body col-45">
-      <img class="full-image" src="../img/comedies.png">
-    <p>
-     Comedies Movies
-      <br>
-	   		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
-			<label for="checkbox-1">I agree</label>
-    </p>
-  </div>
-	<div class="col col-5"></div>
-	<div class="item item-body col-45">
-
-	      <img class="full-image" src="../img/action.png">
-	    <p>
-	    	Action Movies
-	    <br>
-		   		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
-				<label for="checkbox-1">I agree</label>
-	   </p>
-	 </div>
-
+  <div ng-repeat="gosto1  in gostos2">
+    <div class="row" style="margin-bottom:5px">
+    <div ng-repeat="item in gosto1" ng-show="item.nome != NULL" style="  margin: 8px;">
+      <div class="item item-body col-45">
+        <img class="full-image" src="{{item.image}}">
+      <p>
+       {{item.nome}}
+        <br>
+  	   		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+  			<label for="checkbox-1">I agree</label>
+      </p>
+      </div>
+    </div>
+    </div>
+    </div>
  </div>
+   <div class="row">
+    <div class="col col-1"></div>
+    <button class="button button-stable">
+        Proximo
+      </button>
+     <div class="col col-3"></div>
+  </div>
 
 
 

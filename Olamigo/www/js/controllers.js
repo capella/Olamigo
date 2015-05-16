@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.modal.show();
+    //$scope.modal.show();
 
     $cordovaFacebook.getLoginStatus().then(function(success) {
         console.log(JSON.stringify(success));
@@ -58,9 +58,25 @@ localStorage.setItem("id", "face");
 // Retrieve
 $scope.idFacebook = localStorage.getItem("id");
 $scope.acoes = [
-    { image: '../img/comedies.png', nome:"comedies" },
-    { image: '../img/action.png', nome:"action" }
+    { image: '../img/comedies.png', nome:"Comedies Movies"},
+    { image: '../img/action.png', nome:"Action Movies"},
+    { image: '../img/terror.jpeg', nome:"Terror Movies"},
+    { image: '../img/romance.jpeg', nome:"Romance Movies"},
+    { image: '../img/rock.jpeg', nome:"Rock Bands"},
+    { image: '../img/metal.jpeg', nome:"Metal Bands"},
+    { image: '../img/eletronic.jpeg', nome:"Eletronic Bands"},
+    { image: '../img/classic.jpeg', nome:"Classic Concerts"},
+    { image: '../img/adventures.jpeg', nome:"Adventures"},
+    { image: '../img/playmusic.jpeg', nome:"Playing Music"}
+
   ];
+  $scope.gostos2 = [];
+  for(i=0;i<$scope.acoes.length/2;i++){
+    $scope.gostos2[i] = [];
+      $scope.gostos2[i][0]= $scope.acoes[i*2];
+      $scope.gostos2[i][1]= $scope.acoes[i*2+1];
+  }
+  console.log($scope.gostos2);
 
 })
 
