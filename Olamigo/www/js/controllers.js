@@ -40,16 +40,8 @@ localStorage.setItem("id", "face");
 // Retrieve
 $scope.idFacebook = localStorage.getItem("id");
 $scope.acoes = [
-    { image: '../img/comedies.png', id: 1 },
-    { image: '../img/action.png', id: 2 },
-    { image: '../img/terror.png', id: 3 },
-    { image: '../img/romance.png', id: 4 },
-    { image: '../img/rock.pmg', id: 5 },
-    { image: '../img/classic.png', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
-    { image: '../img/eletronic', id: 6 }
+    { image: '../img/comedies.png', nome:"comedies" },
+    { image: '../img/action.png', nome:"action" }
   ];
 
 })
