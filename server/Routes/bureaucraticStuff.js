@@ -123,7 +123,7 @@ router.post('/confirm', function (req, res) {
             if (err) {
                 console.log("Something has gone wrong!");
             } else {
-                console.log("Sent with message ID: ", messageId);
+                console.log("Sent confirm with message ID: ", messageId);
             }
         });
     }
@@ -172,7 +172,7 @@ router.post('/invite', function (req, res) {
                 if (err) {
                     console.log("Something has gone wrong!");
                 } else {
-                    console.log("Sent with message ID: ", messageId);
+                    console.log("Sent invite with message ID: ", messageId);
                 }
             });
         }
@@ -220,7 +220,7 @@ router.post('/sendMsg', function (req, res) {
                 if (err) {
                     console.log("Something has gone wrong!");
                 } else {
-                    console.log("Sent with message ID: ", messageId, " from ", a, " to ", b);
+                    console.log("Sent sendMsg with message ID: ", messageId, " from ", a, " to ", b);
                 }
             });
         }
