@@ -83,7 +83,7 @@ router.post('/getNearest', function (req, res) {
                     /*eliminamos o primeiro resultado porque é eu mesmo (menor dist)*/
                     var newres = Array();
                     var myres = person.documents[0].results;
-                    myres.shift();
+                    //myres.shift();
 
                     /*Atualiza os scores, segunda medida de sort*/
 
