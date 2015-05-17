@@ -101,10 +101,10 @@ router.post('/c', function (req, res) {
 
             for (var i = 0; i < person.length; i++) {
                 console.log(person[i]);
-                if (person[i] == face_id) {
+                if (person[i].face_id == face_id) {
                     fi = person[i];
                 }
-                if (person[i] == face_id_interessado) {
+                if (person[i].face_id == face_id_interessado) {
                     fii = person[i];
                 }
             }
