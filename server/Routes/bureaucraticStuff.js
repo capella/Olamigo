@@ -9,6 +9,8 @@ var router = express.Router();
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
 
+var GCM = require('gcm').GCM;
+
 var Person = require('../Models/Person');
 Person.methods(['get', 'post', 'put', 'delete']);
 Person.register(router,'/person');
@@ -156,7 +158,6 @@ router.post('/invite', function (req, res) {
                 }
             }
 
-            var GCM = require('gcm').GCM;
 
             var gcm = new GCM(apiKey);
 
