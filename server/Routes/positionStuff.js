@@ -51,8 +51,16 @@ router.post('/getNearest', function (req, res) {
             res.status(500).send({status: 'error', content: err.message});
         }
 
-        lat = guy[0].location[0];
-        lon = guy[0].location[1];
+        if(guy[0].location === undefined)
+        {
+            lat = 0;
+            lon = 0;
+        }
+        else
+        {
+            lat = guy[0].location[0];
+            lon = guy[0].location[1];
+        }
 
         console.log("Querying for people near ", [lat, lon], " by ", dist, " km");
 
