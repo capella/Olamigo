@@ -15,7 +15,11 @@ var personSchema = new mongoose.Schema({
     score: {},
     face_id: {type: Number, required: true, unique: true},
     location: {type: [Number], index: '2d'},
-    token: String
+    token: String,
+    activity: {
+    	category: String,
+    	name: String
+    }
 });
 
 // Return model

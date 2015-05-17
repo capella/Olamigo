@@ -14,6 +14,12 @@ app.use('/ins',require('./Routes/insert'));
 app.use('/location',require('./Routes/positionStuff'));
 app.use('/',require('./Routes/bureaucraticStuff'));
 app.use('/gostos',require('./Modules/gostos'));
+app.use('/atividades',require('./Modules/atividades'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.listen(3000);
 console.log('API is running on port 3000');
