@@ -3,25 +3,19 @@
     <ion-list>
 
 <br>
-  <div ng-repeat="gosto1  in gostos2">
-    <div class="row" style="margin-bottom:5px">
-    <div ng-repeat="item in gosto1" ng-show="item.nome != NULL" style="  margin: 8px;">
-      <div class="item item-body col-45">
+  <div ng-repeat="gosto1  in gostos2" class="row" style="margin-bottom:5px">
+
+    <div  class="item item-body col {{item.color}}" ng-repeat="item in gosto1" ng-show="item.nome != NULL" style="  margin: 8px;" ng-click="change(item.nome, item)">
         <img class="full-image" src="{{item.image}}">
       <p>
        {{item.nome}}
-        <br>
-  	   		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
-  			<label for="checkbox-1">I agree</label>
       </p>
-      </div>
-    </div>
     </div>
     </div>
  </div>
    <div class="row">
     <div class="col col-1"></div>
-    <button class="button button-stable">
+    <button class="button button-stable" ng-click="submit()">
         Proximo
       </button>
      <div class="col col-3"></div>

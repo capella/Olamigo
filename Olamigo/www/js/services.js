@@ -1,7 +1,11 @@
 angular.module('services', [])
 .factory('Conta', function($resource) {
-	return $resource(pagina+'/conta/:id');
+	  return $resource(pagina+'/conta/:id');
+	})
+.factory('Gostos', function($resource) {
+	  return $resource(pagina+'/gostos/');
 })
+
 
 .service('User', function($cordovaFacebook) {
   var usuario = {};
