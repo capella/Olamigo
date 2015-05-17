@@ -16,7 +16,7 @@ angular.module('services', [])
       return usuario;
     },
     data: function(){
-    	return JSON.parse(window.localStorage['face']);
+    	//return JSON.parse(window.localStorage['face']);
     }
   }
 

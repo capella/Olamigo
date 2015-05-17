@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.modal.show();
+    //$scope.modal.show();
 
 
       //window.localStorage.removeItem("idface");
@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+    //$scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
@@ -67,9 +67,7 @@ angular.module('starter.controllers', [])
 
   $scope.menus = [
     { url: '#/app/acontecendo', text: 'Home' },
-    { url: '#/app/novaatividade', text: 'Atividades' },
     { url: '#/app/gostos', text: 'Gostos' },
-    { url: '#/app/atividades', text: 'Atividades' },
     { url: '#/app/interacoes', text: 'Interações' },
     { url: '#/app/chat', text: 'Chat' }
   ];
