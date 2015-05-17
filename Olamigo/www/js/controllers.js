@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    $scope.modal.show();
+    //$scope.modal.show();
 
 
       //window.localStorage.removeItem("idface");
@@ -66,7 +66,7 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+    //$scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
@@ -101,9 +101,9 @@ angular.module('starter.controllers', [])
   $scope.menus = [
     { url: '#/app/acontecendo', text: 'Home' },
     { url: '#/app/gostos', text: 'Gostos' },
-    { url: '#/app/atividades', text: 'Atividades' },
     { url: '#/app/interacoes', text: 'Interações' },
-    { url: '#/app/chat', text: 'Chat' }
+    { url: '#/app/chat', text: 'Chat' },
+    { url: '#/app/playlists',text:'Playlist'}
   ];
 
   $scope.User = User.data();
@@ -227,6 +227,23 @@ var confirmado = [];
   ];
 })
 
+.controller('ChatCtrl', function($scope, $stateParams) {
+  $scope.chat = [
+    { image: '../img/comedies.png', nome:"Comedies Movies"},
+    { image: '../img/action.png', nome:"Action Movies"},
+    { image: '../img/terror.jpeg', nome:"Terror Movies"},
+    { image: '../img/romance.jpeg', nome:"Romance Movies"},
+    { image: '../img/rock.jpeg', nome:"Rock Bands"},
+    { image: '../img/metal.jpeg', nome:"Metal Bands"},
+    { image: '../img/eletronic.jpeg', nome:"Eletronic Bands"},
+    { image: '../img/classic.jpeg', nome:"Classic Concerts"},
+    { image: '../img/adventures.jpeg', nome:"Adventures"},
+    { image: '../img/playmusic.jpeg', nome:"Playing Music"}
+
+  ];
+})
+.controller('ChatShowCtrl', function($scope, $stateParams) {
+})
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })

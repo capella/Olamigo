@@ -77,6 +77,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+
+   
   // Pagina principal, carrega o menu
   .state('app', {
     url: "/app",
@@ -164,7 +166,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     }
   })
 
-/*
+
 
   .state('app.search', {
     url: "/search",
@@ -203,7 +205,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     }
   });
 
-*/
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/acontecendo');
 
