@@ -89,49 +89,51 @@ router.post('/c', function (req, res) {
     var face_id_interessado = req.body.face_id_interessado;
     var ok = req.body.ok;
 
-    if(err)
-    {
-        res.status(500).send({status: 'error', content: err.message});
-    }
-    else {
-        res.json({status: 'ok'});
-        var fi;
-        var fii;
+    Person.find({face_id: {$in: [face_id, face_id_interessado]}}, function (err, person) {
 
-        for (var i = 0; i < person.length; i++) {
-            console.log(person[i]);
-            if (person[i] == face_id) {
-                fi = person[i];
-            }
-            if (person[i] == face_id_interessado) {
-                fii = person[i];
+        if (err) {
+            res.status(500).send({status: 'error', content: err.message});
+        }
+        else {
+            res.json({status: 'ok'});
+            var fi;
+            var fii;
+
+            for (var i = 0; i < person.length; i++) {
+                console.log(person[i]);
+                if (person[i] == face_id) {
+                    fi = person[i];
+                }
+                if (person[i] == face_id_interessado) {
+                    fii = person[i];
+                }
             }
         }
-    }
 
-    var message = new gcm.Message();
-    var sender = new gcm.Sender(apiKey);
-    var registrationIds = [];
+        var message = new gcm.Message();
+        var sender = new gcm.Sender(apiKey);
+        var registrationIds = [];
 
-    message.addData('type', 'confirm');
-    message.addData('title','You`ve got a message');
-    message.addData('message',fi.name+" wants to talk to you");
-    message.addData('face_id',fi.face_id);
-    message.addData('OK', ok);
-    message.collapseKey = 'demo';
-    message.delayWhileIdle = true;
-    message.timeToLive = 3;
+        message.addData('type', 'confirm');
+        message.addData('title', 'You`ve got a message');
+        message.addData('message', fi.name + " wants to talk to you");
+        message.addData('face_id', fi.face_id);
+        message.addData('OK', ok);
+        message.collapseKey = 'demo';
+        message.delayWhileIdle = true;
+        message.timeToLive = 3;
 
-    // At least one token is required - each app will register a different token
-    registrationIds.push(fii.token);
+        // At least one token is required - each app will register a different token
+        registrationIds.push(fii.token);
 
-    /**
-     * Parameters: message-literal, registrationIds-array, No. of retries, callback-function
-     */
-    sender.send(message, registrationIds, 4, function (result) {
-        console.log(result);
+        /**
+         * Parameters: message-literal, registrationIds-array, No. of retries, callback-function
+         */
+        sender.send(message, registrationIds, 4, function (result) {
+            console.log(result);
+        });
+        res.json({status: 'ok'});
     });
-    res.json({status: 'ok'});
 });
 
 router.post('/invite', function (req, res) {
