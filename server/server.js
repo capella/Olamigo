@@ -22,5 +22,5 @@ app.use('/',require('./Routes/bureaucraticStuff'));
 app.use('/gostos',require('./Modules/gostos'));
 app.use('/atividades',require('./Modules/atividades'));
 
-app.listen(3000);
+app.listen(6969);
 console.log('API is running on port 3000');
