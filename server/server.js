@@ -14,5 +14,5 @@ app.use('/ins',require('./Routes/insert'));
 app.use('/location',require('./Routes/positionStuff'));
 app.use('/',require('./Routes/bureaucraticStuff'));
 
-app.listen(3000);
+app.listen(3001);
 console.log('API is running on port 3000');
