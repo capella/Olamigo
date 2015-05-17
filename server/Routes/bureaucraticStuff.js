@@ -113,6 +113,7 @@ router.post('/confirm', function (req, res) {
     var sender = new gcm.Sender(apiKey);
     var registrationIds = [];
 
+    message.addData('type', 'confirm');
     message.addData('title','You`ve got a message');
     message.addData('message',fi.name+" wants to talk to you");
     message.addData('face_id',fi.face_id);
@@ -165,6 +166,7 @@ router.post('/invite', function (req, res) {
             var sender = new gcm.Sender(apiKey);
             var registrationIds = [];
 
+            message.addData('type', 'invite');
             message.addData('title','You`ve got a message');
             message.addData('message',fii.name+" wants to talk to you");
             message.addData('face_id',fii.face_id);
