@@ -74,7 +74,7 @@ router.post('/getNearest', function (req, res) {
                 num: 10,
                 spherical: true,
                 distanceMultiplier: 6371, // converting results to km
-                maxDistance: parseFloat(dist),
+                maxDistance: parseFloat(dist)
             },
             function (err, person) {
                 if (err) {
