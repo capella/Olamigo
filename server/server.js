@@ -24,3 +24,4 @@ app.use('/atividades',require('./Modules/atividades'));
 
 app.listen(6969);
 console.log('API is running on the sexy port');
+

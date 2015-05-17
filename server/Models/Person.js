@@ -19,7 +19,8 @@ var personSchema = new mongoose.Schema({
     activity: {
     	category: String,
     	name: String
-    }
+    },
+    active: {type: Boolean, default: true}
 });
 
 // Return model
