@@ -66,10 +66,13 @@ router.post('/bigode', function (req, res) {
     var face_id_interessado = req.body.b;
 
     Person.find({face_id: {$in: [face_id, face_id_interessado]}}, function (err, person) {
-        if (err) {
-
+        if(err)
+        {
+            res.status(500).send({status: 'error', content: err.message});
         }
-        else {
+        else
+        {
+            res.json({status: 'ok'});
             for (var i = 0; i < person.length; i++) {
                 console.log(person[i]);
             }
@@ -85,13 +88,13 @@ router.post('/confirm', function (req, res) {
     var face_id_interessado = req.body.face_id_interessado;
     var ok = req.body.ok;
 
-    Person.find({face_id: {$in: [face_id, face_id_interessado]}}, function (err, person) {
-        if(err)
-        {
-
-        }
-        else
-        {
+    if(err)
+    {
+        res.status(500).send({status: 'error', content: err.message});
+    }
+    else
+    {
+        res.json({status: 'ok'});
             var fi;
             var fii;
 
@@ -137,10 +140,11 @@ router.post('/invite', function (req, res) {
     Person.find({face_id: {$in: [face_id, face_id_interessado]}}, function (err, person) {
         if(err)
         {
-
+            res.status(500).send({status: 'error', content: err.message});
         }
         else
         {
+            res.json({status: 'ok'});
             var fi;
             var fii;
 
