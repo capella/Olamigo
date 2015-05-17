@@ -1,0 +1,37 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-royal">
+      <h1 class="title">New Active</h1>
+      <button class="button button-clear button-primary" ng-click="newpost_close()" style="color: #fff;">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <div class="list">
+          <label class="item item-input item-floating-label">
+              <textarea  id="mod" type="text" placeholder="What do you want to do?" style="height: 200px;" ng-model="modaltext"></textarea>
+          </label>
+
+            <label class="item item-input item-select">
+    <div class="input-label">
+      Categoria
+    </div>
+    <select>
+      <option>Blue</option>
+      <option selected>Green</option>
+      <option>Red</option>
+    </select>
+  </label>
+
+   <label class="item item-input item-select">
+    <div class="input-label">
+      Até qaundo quer realizar a atividade?
+    </div>
+    <select>
+      <option>Blue</option>
+      <option selected>Green</option>
+      <option>Red</option>
+    </select>
+  </label>
+
+          <button class="button button-block button-royal" ng-click="save(modaltext)">Create</button>
+      </div>
+    </ion-content>
+</ion-modal-view>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -67,7 +67,6 @@ angular.module('starter.controllers', [])
 
   $scope.menus = [
     { url: '#/app/acontecendo', text: 'Home' },
-    { url: '#/app/novaatividade', text: 'Atividades' },
     { url: '#/app/gostos', text: 'Gostos' },
     { url: '#/app/atividades', text: 'Atividades' },
     { url: '#/app/interacoes', text: 'Interações' },
@@ -75,6 +74,21 @@ angular.module('starter.controllers', [])
   ];
 
   $scope.User = User.data();
+
+
+  //MODAL ATIVIDADE
+  $ionicModal.fromTemplateUrl('templates/novaatividade.html', {
+    scope: $scope
+  }).then(function(modal2) {
+    $scope.modal2 = modal2;
+  });
+  $scope.newpost = function (){
+    $scope.modal2.show();
+  };
+
+  $scope.newpost_close = function (){
+    $scope.modal2.hide();
+  };
 
 })
 
@@ -131,6 +145,16 @@ $scope.acoes = [
   ];
 })
 
+.controller('NovaAtividadeCtrl', function($scope) {
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
+})
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

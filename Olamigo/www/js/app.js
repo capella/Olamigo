@@ -104,17 +104,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     }
   })
 
-  //Adicona uma atividade
-  .state('app.novaatividade', {
-    url: "/novaatividade",
-    views: {
-      'menuContent': {
-        controller: 'NovAatividadeCtrl',
-        templateUrl: "templates/novaatividade.html"
-      }
-    }
-  })
-
   //Mostra as ultimas interacoes da atividade
   .state('app.atividades', {
     url: "/atividades",
