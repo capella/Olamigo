@@ -89,6 +89,8 @@ router.post('/c', function (req, res) {
     var face_id_interessado = req.body.face_id_interessado;
     var ok = req.body.ok;
 
+    console.log(face_id, face_id_interessado, " fucking ids");
+
     Person.find({face_id: {$in: [face_id, face_id_interessado]}}, function (err, person) {
 
         if (err) {
@@ -100,11 +102,12 @@ router.post('/c', function (req, res) {
             var fii;
 
             for (var i = 0; i < person.length; i++) {
-                console.log(person[i]);
                 if (person[i].face_id == face_id) {
+                    console.log(person[i]);
                     fi = person[i];
                 }
                 if (person[i].face_id == face_id_interessado) {
+                    console.log(person[i]);
                     fii = person[i];
                 }
             }
@@ -123,6 +126,7 @@ router.post('/c', function (req, res) {
         message.delayWhileIdle = true;
         message.timeToLive = 3;
 
+        console.log(fii);
         // At least one token is required - each app will register a different token
         registrationIds.push(fii.token);
 
@@ -132,7 +136,7 @@ router.post('/c', function (req, res) {
         sender.send(message, registrationIds, 4, function (result) {
             console.log(result);
         });
-        res.json({status: 'ok'});
+        //res.json({status: 'ok'});
     });
 });
 
