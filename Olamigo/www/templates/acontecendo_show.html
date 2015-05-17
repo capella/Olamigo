@@ -1,6 +1,6 @@
 <ion-view view-title="Happen">
-    <ion-content>
-   <div class="list card">
+    <ion-content class="content padding has-header">
+   <div class="list card" >
 
   <div class="item item-avatar">
   	<img src="https://graph.facebook.com/v2.3/{{acontece.obj.face_id}}/picture">
@@ -14,18 +14,15 @@
       <p>Description:{{acontece.obj.activity.name}}</p>
     </p>
   </div>
+
   </div>
+<div class="list ">
+  <button class="button button-block button-positive">
+  Participate
+</button>
 
-
- 	<div class="row">
-   <button class="button button-large button-warning">
-   		Negative
-	</button>
-
-   <button class="button button-large button-balance">
-  		Positive
-	</button>
 </div>
+
 
 
   </ion-content>

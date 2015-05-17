@@ -177,7 +177,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GostosCtrl', function($scope,Gostos) {
+.controller('GostosCtrl', function($scope,Gostos, $http,$ionicLoading) {
 
 // Retrieve
 $scope.acoes = [
@@ -193,6 +193,8 @@ $scope.acoes = [
     { image: '../img/playmusic.jpeg', nome:"Playing Music"}
 
   ];
+
+
 
 
 $scope.customStyle = {};
@@ -229,6 +231,16 @@ var confirmado = [];
 
  $scope.submit = function() {
  
+          $http.post(pagina+'/gostos/', {face_id: window.localStorage['idface'], gostos: confirmado}).
+          success(function(data, status, headers, config) {
+            console.log(JSON.stringify(data));
+          }).
+          error(function(data, status, headers, config) {
+              $ionicLoading.show({
+                template: 'Connection Erro',
+                duration: 1500
+              });
+          });
  };
 
 })

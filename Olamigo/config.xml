@@ -42,4 +42,5 @@
     <string name="fb_app_id">1427722967536898</string>
     <string name="fb_app_name">Olamigo</string>
   </resources>
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>

@@ -14,10 +14,10 @@
 
 <a class="item item-thumbnail-left" href="#/app/acontecendo_show/{{atividade.obj.face_id}}" ng-repeat="atividade in atividades">
       <img src="https://graph.facebook.com/v2.3/{{atividade.obj.face_id}}/picture">
-
+		{{atividade.obj.activity.name}}
+		<h3>{{atividade.obj.activity.category}}</h3>
       <h3>{{atividade.obj.name}}</h3>
-      <h3>{{atividade.obj.category}}</h3>
-      <h3>{{atividade.dist | number:2}}</h3>
+      <h3>{{atividade.dis | number:2}}</h3>
     </a>
 
 
