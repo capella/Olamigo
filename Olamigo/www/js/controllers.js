@@ -1,6 +1,39 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker, $cordovaBackgroundGeolocation) {
+  
+//teste
+
+
+ var options = {
+    // https://github.com/christocracy/cordova-plugin-background-geolocation#config
+  };
+
+  document.addEventListener("deviceready", function () {
+
+    // `configure` calls `start` internally
+    $cordovaBackgroundGeolocation.configure(options)
+    .then(
+      null, // Background never resolves
+      function (err) { // error callback
+        console.error(err);
+      },
+      function (location) { // notify callback
+        console.log(location);
+      });
+
+
+    $scope.stopBackgroundGeolocation = function () {
+      $cordovaBackgroundGeolocation.stop();
+    };
+
+    $cordovaBackgroundGeolocation.start();
+
+  }, false);
+
+  //--------------------
+
+
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -163,15 +196,24 @@ var confirmado = [];
   ];
 })
 
-.controller('AcontecendoCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('AcontecendoCtrl', function($scope, Acontecendo,$http,$ionicLoading) {
+  $scope.atividades = [];
+
+  console.log(9090);
+
+  $http.post(pagina+'/location/getNearest/', {face_id: 4, geo: "0,0", dist:2}).
+    success(function(data, status, headers, config) {
+      $scope.atividades = data;
+    }).
+    error(function(data, status, headers, config) {
+        $ionicLoading.show({
+          template: 'Connection Erro',
+          duration: 1500
+        });
+    });
+
+
+
 })
 
 .controller('NovaAtividadeCtrl', function($scope) {
@@ -187,4 +229,7 @@ var confirmado = [];
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('ChatCtrl', function($scope, $stateParams) {
 });

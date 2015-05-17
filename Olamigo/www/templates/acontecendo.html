@@ -1,5 +1,30 @@
 <ion-view view-title="Playlist">
-  <ion-content>
-    <h1>Playlist</h1>
+  <ion-content has-header="true">
+
+
+<div class="list">
+
+	   <label class="item item-input item-select">
+    <div class="input-label">
+      Categoria:
+    </div>
+    <select>
+      <option>Blue</option>
+      <option selected>Green reen reen</option>
+      <option>Red</option>
+    </select>
+  </label>
+
+    <a class="item item-thumbnail-left" href="#" ng-repeat="atividade in atividades">
+      <img src="cover.jpg">
+      <p>Nine Inch Nails</p>
+      <h4>{{atividade.name}}</h4>
+    </a>
+
+
+    
+</div>
+
   </ion-content>
 </ion-view>
+

@@ -6,6 +6,10 @@ angular.module('services', [])
 	  return $resource(pagina+'/gostos/');
 })
 
+.factory('Acontecendo', function($resource) {
+	  return $resource(pagina+'/location/getNearest/');
+})
+
 
 .service('User', function($cordovaFacebook) {
   var usuario = {};
@@ -16,7 +20,10 @@ angular.module('services', [])
       return usuario;
     },
     data: function(){
+    	 if (window.localStorage.getItem("face") !== 'undefined' 
+      && window.localStorage.getItem("face") !== null) {
     	return JSON.parse(window.localStorage['face']);
+		}
     }
   }
 

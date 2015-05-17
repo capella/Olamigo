@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var pagina = "melvans.cloudapp.net:9090";
+var pagina = "http://melvans.cloudapp.net:6969";
 angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordova', 'ngResource'])
 
 .run(function($ionicPlatform, $cordovaPush) {
@@ -23,6 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
 
 })
+
+
 
 .run(function($cordovaPush,$rootScope) {
 
@@ -62,7 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
 
     // WARNING: dangerous to unregister (results in loss of tokenID)
-    $cordovaPush.unregister(options).then(function(result) {
+    $cordovaPush.unregister().then(function(result) {
       // Success!
     }, function(err) {
       // Error
