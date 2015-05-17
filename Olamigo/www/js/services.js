@@ -27,5 +27,31 @@ angular.module('services', [])
     }
   }
 
-});
+})
+
+.service('ListaPrincipal', function() {  
+  var lista = {};
+  return {
+    save: function(data) {
+      lista = data;
+      return lista;
+    },
+    all: function() {
+      return lista;
+    },
+    get: function(Id) {
+      // Simple index lookup
+      return lista[Id];
+    },
+    atualizac: function(Id, num) {
+      lista[Id].likes += num;
+      return lista;
+    },
+    atualiza: function(Id, num) {
+      lista[Id].likes = num;
+      return lista;
+    }
+  }
+  
+});;
 

@@ -1,6 +1,13 @@
+var atividades_lista = ["Music",
+    "Sports",
+    "Food",
+    "Videogame",
+    "Hackaton",
+    "Others"];
+
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker, $cordovaBackgroundGeolocation) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker, $cordovaBackgroundGeolocation, $http) {
   
 //teste
 
@@ -42,7 +49,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    //$scope.modal.show();
+    $scope.modal.show();
 
 
       //window.localStorage.removeItem("idface");
@@ -82,6 +89,20 @@ angular.module('starter.controllers', [])
       $cordovaFacebook.api("me", ["public_profile"])
       .then(function(success) {
         $scope.User = User.save(success);
+
+          $http.post(pagina+'/login/', {face_id: $scope.User.id, name: $scope.User.name}).
+          success(function(data, status, headers, config) {
+            console.log(JSON.stringify(data));
+          }).
+          error(function(data, status, headers, config) {
+              $ionicLoading.show({
+                template: 'Connection Erro',
+                duration: 1500
+              });
+          });
+
+
+
       }, function (error) {
         // error
       });
@@ -127,11 +148,7 @@ angular.module('starter.controllers', [])
 
 .controller('GostosCtrl', function($scope,Gostos) {
 
-
-  // Store
-localStorage.setItem("id", "face");
 // Retrieve
-$scope.idFacebook = localStorage.getItem("id");
 $scope.acoes = [
     { image: '../img/comedies.png', nome:"Comedies Movies"},
     { image: '../img/action.png', nome:"Action Movies"},
@@ -196,21 +213,32 @@ var confirmado = [];
   ];
 })
 
-.controller('AcontecendoCtrl', function($scope, Acontecendo,$http,$ionicLoading) {
+.controller('AcontecendoCtrl', function($scope, Acontecendo,$http,$ionicLoading, $cordovaGeolocation, ListaPrincipal) {
   $scope.atividades = [];
 
-  console.log(9090);
-
-  $http.post(pagina+'/location/getNearest/', {face_id: 4, geo: "0,0", dist:2}).
-    success(function(data, status, headers, config) {
-      $scope.atividades = data;
-    }).
-    error(function(data, status, headers, config) {
-        $ionicLoading.show({
-          template: 'Connection Erro',
-          duration: 1500
+   var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      $http.post(pagina+'/location/getNearest/', {face_id: window.localStorage['idface'], geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
+        success(function(data, status, headers, config) {
+          $scope.atividades = data.content;
+          ListaPrincipal.save(data.content);
+          console.log(JSON.stringify(data));
+        }).
+        error(function(data, status, headers, config) {
+            $ionicLoading.show({
+              template: 'Connection Erro',
+              duration: 1500
+            });
         });
+    }, function(err) {
+      $ionicLoading.show({
+              template: 'Verify your GPS!!!',
+              duration: 1500
+            });
     });
+
 
 
 
@@ -246,7 +274,4 @@ var confirmado = [];
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-
-.controller('ChatCtrl', function($scope, $stateParams) {
 });
