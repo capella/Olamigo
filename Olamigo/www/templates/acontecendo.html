@@ -1,4 +1,4 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Olamigo">
   <ion-content has-header="true">
 
 
@@ -15,7 +15,7 @@
     </select>
   </label>
 
-    <a class="item item-thumbnail-left" href="#" ng-repeat="atividade in atividades">
+    <a class="item item-thumbnail-left" href="#/app/acontecendo_show/{{atividade.obj.id}}" ng-repeat="atividade in atividades">
       <img src="cover.jpg">
       <p>{{atividade.obj.activet.name}}</p>
       <h3>{{atividade.obj.name}}</h3>

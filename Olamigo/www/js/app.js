@@ -34,30 +34,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
   document.addEventListener("deviceready", function(){
     $cordovaPush.register(androidConfig).then(function(result) {
-      console.log(JSON.stringify(result));
+      //console.log(JSON.stringify(result));
     }, function(err) {
-      console.log(JSON.stringify(err));
+      //console.log(JSON.stringify(err));
     })
 
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            console.log('registration ID = ' + notification.regid);
+            //console.log('registration ID = ' + notification.regid);
           }
           break;
 
         case 'message':
           // this is the actual push notification. its format depends on the data model from the push server
-          console.log('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          //console.log('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
           break;
 
         case 'error':
-          console.log('GCM error = ' + notification.msg);
+          //console.log('GCM error = ' + notification.msg);
           break;
 
         default:
-          console.log('An unknown GCM event has occurred');
+          //console.log('An unknown GCM event has occurred');
           break;
       }
     });
@@ -105,6 +105,40 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       'menuContent': {
         controller: 'AcontecendoCtrl',
         templateUrl: "templates/acontecendo.html"
+      }
+    }
+  })
+
+ //Lista as atuvidades atuais que estao por perto
+  .state('app.acontecendo_show', {
+    url: "/acontecendo_show/:Id",
+    views: {
+      'menuContent': {
+        controller: 'AcontecendoShowCtrl',
+        templateUrl: "templates/acontecendo_show.html"
+      }
+    }
+  })
+
+
+//Lista as atuvidades atuais que estao por perto
+  .state('app.request', {
+    url: "/request",
+    views: {
+      'menuContent': {
+        controller: 'RequestCtrl',
+        templateUrl: "templates/request.html"
+      }
+    }
+  })
+
+ //Lista as atuvidades atuais que estao por perto
+  .state('app.request_show', {
+    url: "/request_show/:Id",
+    views: {
+      'menuContent': {
+        controller: 'RequestShowCtrl',
+        templateUrl: "templates/request_show.html"
       }
     }
   })
