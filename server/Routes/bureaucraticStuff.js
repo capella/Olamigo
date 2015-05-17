@@ -140,7 +140,6 @@ router.post('/invite', function (req, res) {
         }
         else
         {
-            res.json({status: 'ok'});
             var fi;
             var fii;
             console.log(person, face_id, face_id_interessado);
@@ -166,7 +165,8 @@ router.post('/invite', function (req, res) {
                 collapse_key: 'Collapse key',
                 'data.key1': 'Requested',
                 'data.key2': fii.face_id,
-                'message': "You`ve got an invite"
+                'message': "You`ve got an invite",
+                'mensagem': "You`ve got an invite"
             };
 
             gcm.send(message, function(err, messageId){
@@ -176,6 +176,7 @@ router.post('/invite', function (req, res) {
                     console.log("Sent invite with message ID: ", messageId);
                 }
             });
+            res.json({status: 'ok'});
         }
     });
 });
