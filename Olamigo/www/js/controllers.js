@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -11,9 +11,13 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
     $scope.modal.show();
 
+
+      //window.localStorage.removeItem("idface");
+
       console.log("p"+window.localStorage.getItem("idface") );
 
-    if (window.localStorage.getItem("idface") !== 'undefined') {
+    if (window.localStorage.getItem("idface") !== 'undefined' 
+      && window.localStorage.getItem("idface") !== null) {
       $scope.modal.hide();
       console.log("p"+window.localStorage.getItem("idface") );
     }
@@ -40,8 +44,16 @@ angular.module('starter.controllers', [])
     .then(function(success) {
       console.log(JSON.stringify(success));
       window.localStorage['idface'] =  success.authResponse.userID;
-      console.lo
       $scope.modal.hide();
+
+      $cordovaFacebook.api("me", ["public_profile"])
+      .then(function(success) {
+        $scope.User = User.save(success);
+      }, function (error) {
+        // error
+      });
+
+
     }, function (error) {
       // error
     });
@@ -55,12 +67,14 @@ angular.module('starter.controllers', [])
 
   $scope.menus = [
     { url: '#/app/acontecendo', text: 'Home' },
-    { url: '#/app/nova_atividade', text: 'Atividades' },
+    { url: '#/app/novaatividade', text: 'Atividades' },
     { url: '#/app/gostos', text: 'Gostos' },
     { url: '#/app/atividades', text: 'Atividades' },
     { url: '#/app/interacoes', text: 'Interações' },
     { url: '#/app/chat', text: 'Chat' }
   ];
+
+  $scope.User = User.data();
 
 })
 
@@ -105,6 +119,18 @@ $scope.acoes = [
     { title: 'Cowbell', id: 6 }
   ];
 })
+
+.controller('AcontecendoCtrl', function($scope) {
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
+})
+
 
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

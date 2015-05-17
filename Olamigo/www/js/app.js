@@ -74,6 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+  // Pagina principal, carrega o menu
   .state('app', {
     url: "/app",
     abstract: true,
@@ -81,6 +82,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     controller: 'AppCtrl'
   })
 
+  // Lista do gostos do usuario
   .state('app.gostos', {
     url: "/gostos",
     views: {
@@ -90,6 +92,87 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       }
     }
   })
+
+  //Lista as atuvidades atuais que estao por perto
+  .state('app.acontecendo', {
+    url: "/acontecendo",
+    views: {
+      'menuContent': {
+        controller: 'AcontecendoCtrl',
+        templateUrl: "templates/acontecendo.html"
+      }
+    }
+  })
+
+  //Adicona uma atividade
+  .state('app.novaatividade', {
+    url: "/novaatividade",
+    views: {
+      'menuContent': {
+        controller: 'NovAatividadeCtrl',
+        templateUrl: "templates/novaatividade.html"
+      }
+    }
+  })
+
+  //Mostra as ultimas interacoes da atividade
+  .state('app.atividades', {
+    url: "/atividades",
+    views: {
+      'menuContent': {
+        controller: 'AtividadesCtrl',
+        templateUrl: "templates/atividades.html"
+      }
+    }
+  })
+
+
+  //Mostra uma atividade especifica
+  .state('app.atividades_show', {
+    url: "/atividades_show/:atividadeId",
+    views: {
+      'menuContent': {
+        controller: 'AtividadesShowCtrl',
+        templateUrl: "templates/atividades_show.html"
+      }
+    }
+  })
+
+   //Mostra uma atividade especifica
+  .state('app.interacoes', {
+    url: "/interacoes",
+    views: {
+      'menuContent': {
+        controller: 'InteracoesCtrl',
+        templateUrl: "templates/interacoes.html"
+      }
+    }
+  })
+
+  //CHAT GERAL
+  .state('app.chat', {
+    url: "/chat",
+    views: {
+      'menuContent': {
+        controller: 'ChatCtrl',
+        templateUrl: "templates/chat.html"
+      }
+    }
+  })
+
+
+  //CHAT GERAL
+  .state('app.chat_show', {
+    url: "/chat_show/:Id",
+    views: {
+      'menuContent': {
+        controller: 'ChatShowCtrl',
+        templateUrl: "templates/chat_show.html"
+      }
+    }
+  })
+
+/*
 
   .state('app.search', {
     url: "/search",
@@ -127,8 +210,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       }
     }
   });
+
+*/
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/acontecendo');
 
 
 
