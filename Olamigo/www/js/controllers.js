@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GostosCtrl', function($scope) {
+.controller('GostosCtrl', function($scope,Gostos) {
 
 
   // Store
@@ -84,6 +84,11 @@ $scope.acoes = [
     { image: '../img/playmusic.jpeg', nome:"Playing Music"}
 
   ];
+
+
+$scope.customStyle = {};
+
+
   $scope.gostos2 = [];
   for(i=0;i<$scope.acoes.length/2;i++){
     $scope.gostos2[i] = [];
@@ -92,8 +97,32 @@ $scope.acoes = [
   }
   console.log($scope.gostos2);
 
-})
 
+var confirmado = [];
+ $scope.change = function(id, item) {
+   var check = 0;
+
+
+        for(i=0;i<confirmado.length;i++){
+          if(confirmado[i] == id){
+            check=1
+            item.color = "white";
+
+            delete confirmado[i];
+          }
+        }
+        if(check == 0){
+         item.color = "coral";
+          confirmado.push(id);
+        }
+         console.log(confirmado);
+  };
+
+ $scope.submit = function() {
+ 
+ };
+
+})
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [

@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+var pagina = "melvans.cloudapp.net:9090";
 angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordova', 'ngResource'])
 
 .run(function($ionicPlatform, $cordovaPush) {
