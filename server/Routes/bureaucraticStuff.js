@@ -13,7 +13,7 @@ var Person = require('../Models/Person');
 Person.methods(['get', 'post', 'put', 'delete']);
 Person.register(router,'/person');
 
-var apiKey = "";
+var apiKey = "AIzaSyCzEiNwACgnPLvJUTFhFRtazcXjYrXJb8g";
 
 PersonUtilities = require("../Modules/Helpers");
 
