@@ -115,8 +115,8 @@ router.post('/confirm', function (req, res) {
         var message = {
             registration_id: fii.token, // required
             collapse_key: 'Collapse key',
-            'data.key1': ok
-            //'data.key2': fii.token
+            'message': ok,
+            'data.key1': fi.face_id
         };
 
         gcm.send(message, function(err, messageId){
@@ -165,7 +165,8 @@ router.post('/invite', function (req, res) {
                 registration_id: fi.token, // required
                 collapse_key: 'Collapse key',
                 'data.key1': 'Requested',
-                'data.key2': fii.token
+                'data.key2': fii.face_id,
+                'message': "You`ve got an invite"
             };
 
             gcm.send(message, function(err, messageId){
