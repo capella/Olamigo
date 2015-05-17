@@ -13,6 +13,7 @@ app.use('/list',require('./Routes/app'));
 app.use('/ins',require('./Routes/insert'));
 app.use('/location',require('./Routes/positionStuff'));
 app.use('/',require('./Routes/bureaucraticStuff'));
+app.use('/gostos',require('./Modules/gostos'));
 
-app.listen(3001);
+app.listen(3000);
 console.log('API is running on port 3000');
