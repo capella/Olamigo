@@ -101,10 +101,10 @@ router.post('/confirm', function (req, res) {
         for (var i = 0; i < person.length; i++) {
             console.log(person[i]);
             if (person[i] == face_id) {
-                fi = person;
+                fi = person[i];
             }
             if (person[i] == face_id_interessado) {
-                fii = person;
+                fii = person[i];
             }
         }
 
@@ -148,11 +148,11 @@ router.post('/invite', function (req, res) {
                 console.log(person[i]);
                 if(person[i] == face_id)
                 {
-                    fi = person;
+                    fi = person[i];
                 }
                 if(person[i] == face_id_interessado)
                 {
-                    fii = person;
+                    fii = person[i];
                 }
             }
 
@@ -197,10 +197,10 @@ router.post('/sendMsg', function (req, res) {
             for (var i = 0; i < person.length; i++) {
                 console.log(person[i]);
                 if (person[i] == a) {
-                    fi = person;
+                    fi = person[i];
                 }
                 if (person[i] == b) {
-                    a = person;
+                    a = person[i];
                 }
             }
 
