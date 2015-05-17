@@ -178,5 +178,53 @@ router.post('/invite', function (req, res) {
     });
 });
 
+router.post('/sendMsg', function (req, res) {
+    var a = req.body.a;
+    var b = req.body.b;
+    var msg = req.body.ok;
+
+    Person.find({face_id: {$in: [a, b]}}, function (err, person) {
+        if(err)
+        {
+            res.status(500).send({status: 'error', content: err.message});
+        }
+        else
+        {
+            res.json({status: 'ok'});
+            var a;
+            var bfii;
+
+            for (var i = 0; i < person.length; i++) {
+                console.log(person[i]);
+                if (person[i] == a) {
+                    fi = person;
+                }
+                if (person[i] == b) {
+                    a = person;
+                }
+            }
+
+            var GCM = require('gcm').GCM;
+
+            var gcm = new GCM(apiKey);
+
+            var message = {
+                registration_id: b.token, // required
+                collapse_key: 'Collapse key',
+                'data.key1': a.token,
+                'data.key2': msg
+            };
+
+            gcm.send(message, function(err, messageId){
+                if (err) {
+                    console.log("Something has gone wrong!");
+                } else {
+                    console.log("Sent with message ID: ", messageId, " from ", a, " to ", b);
+                }
+            });
+        }
+    });
+});
+
 //retrun router
 module.exports = router;
