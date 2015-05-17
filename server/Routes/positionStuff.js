@@ -78,10 +78,13 @@ router.post('/getNearest', function (req, res) {
                     myres.shift();
 
                     /*Atualiza os scores, segunda medida de sort*/
-                    
+
 
                     for (var z = 0; z < myres.length; z++)
                     {
+                        if (!myres[z].obj.activity)
+                            myres.splice(z, 1);
+
                         if(myres[z].obj.activity && myres[z].obj.activity.category == mycat)
                         {
                             newres.push(myres[z]);
