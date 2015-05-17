@@ -10,28 +10,15 @@
           </label>
 
             <label class="item item-input item-select">
-    <div class="input-label">
-      Categoria
-    </div>
-    <select>
-      <option>Blue</option>
-      <option selected>Green</option>
-      <option>Red</option>
-    </select>
-  </label>
+		    <div class="input-label">
+		      Categoria
+		    </div>
+		    <select ng-model="cat">
+		      <option ng-repeat="p in atividades_lista" value="{{p}}">{{p}}</option>
+		    </select>
+		  </label>
 
-   <label class="item item-input item-select">
-    <div class="input-label">
-      Até qaundo quer realizar a atividade?
-    </div>
-    <select>
-      <option>Blue</option>
-      <option selected>Green</option>
-      <option>Red</option>
-    </select>
-  </label>
-
-          <button class="button button-block button-royal" ng-click="save(modaltext)">Create</button>
+          <button class="button button-block button-royal" ng-click="save90(modaltext,cat)">Create</button>
       </div>
     </ion-content>
 </ion-modal-view>

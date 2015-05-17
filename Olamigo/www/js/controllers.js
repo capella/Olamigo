@@ -1,4 +1,5 @@
-var atividades_lista = ["Music",
+var atividades_lista = [
+    "Music",
     "Sports",
     "Food",
     "Videogame",
@@ -7,8 +8,9 @@ var atividades_lista = ["Music",
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker, $cordovaBackgroundGeolocation, $http) {
+.controller('AppCtrl', function($ionicLoading, $scope, $ionicModal, $timeout, $cordovaFacebook, User, $cordovaDatePicker, $cordovaBackgroundGeolocation, $http, $cordovaPush) {
   
+  $scope.atividades_lista = atividades_lista;
 //teste
 
 
@@ -84,6 +86,13 @@ angular.module('starter.controllers', [])
     .then(function(success) {
       console.log(JSON.stringify(success));
       window.localStorage['idface'] =  success.authResponse.userID;
+
+          $cordovaPush.register(androidConfig).then(function(result) {
+      console.log(JSON.stringify(result));
+    }, function(err) {
+      console.log(JSON.stringify(err));
+    });
+
       $scope.modal.hide();
 
       $cordovaFacebook.api("me", ["public_profile"])
@@ -131,18 +140,39 @@ angular.module('starter.controllers', [])
 
 
   //MODAL ATIVIDADE
-  $ionicModal.fromTemplateUrl('templates/novaatividade.html', {
-    scope: $scope
-  }).then(function(modal2) {
-    $scope.modal2 = modal2;
-  });
+
   $scope.newpost = function (){
-    $scope.modal2.show();
+    $ionicModal.fromTemplateUrl('templates/novaatividade.html', {
+        scope: $scope
+      }).then(function(modal2) {
+        $scope.modal2 = modal2;
+        $scope.cat = $scope.atividades_lista[0];
+        $scope.modal2.show();
+      });
+
+      $scope.newpost_close = function (){
+        $scope.modal2.hide();
+      };
+
+
+      $scope.save90 = function(text,categoria){
+
+          $http.post(pagina+'/atividades/', {face_id: window.localStorage['idface'], name: text, category: categoria}).
+            success(function(data, status, headers, config) {
+              console.log(JSON.stringify(data));
+              $scope.modal2.hide();
+              $scope.modal.remove();
+            }).
+            error(function(data, status, headers, config) {
+                $ionicLoading.show({
+                  template: 'Connection Erro',
+                  duration: 1500
+                });
+            });
+
+      };
   };
 
-  $scope.newpost_close = function (){
-    $scope.modal2.hide();
-  };
 
 })
 
@@ -214,13 +244,14 @@ var confirmado = [];
 })
 
 .controller('AcontecendoCtrl', function($scope, Acontecendo,$http,$ionicLoading, $cordovaGeolocation, ListaPrincipal) {
+  $scope.cat2 = $scope.atividades_lista[0];
   $scope.atividades = [];
 
    var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      $http.post(pagina+'/location/getNearest/', {face_id: window.localStorage['idface'], geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
+      $http.post(pagina+'/location/getNearest/', {face_id: window.localStorage['idface'], geo: position.coords.latitude+","+position.coords.longitude, dist:1, cat: $scope.cat2}).
         success(function(data, status, headers, config) {
           $scope.atividades = data.content;
           ListaPrincipal.save(data.content);
@@ -238,6 +269,21 @@ var confirmado = [];
               duration: 1500
             });
     });
+
+    $scope.invite1 = function(face_id){
+
+         $http.post(pagina+'/invite/', {face_id: face_id, face_id_interessado: window.localStorage['idface']}).
+            success(function(data, status, headers, config) {
+              console.log(JSON.stringify(data));
+            }).
+            error(function(data, status, headers, config) {
+                $ionicLoading.show({
+                  template: 'Connection Erro',
+                  duration: 1500
+                });
+            });
+
+    }
 
 
 

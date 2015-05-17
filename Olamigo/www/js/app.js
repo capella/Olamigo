@@ -4,6 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
+ var androidConfig = {
+    "senderID": "652530931197"
+  };
+
 var pagina = "http://melvans.cloudapp.net:6969";
 angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordova', 'ngResource'])
 
@@ -26,24 +31,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
 
 
-.run(function($cordovaPush,$rootScope) {
+.run(function($cordovaPush,$rootScope,$http) {
 
-  var androidConfig = {
-    "senderID": "652530931197",
-  };
+
 
   document.addEventListener("deviceready", function(){
+
     $cordovaPush.register(androidConfig).then(function(result) {
       console.log(JSON.stringify(result));
     }, function(err) {
       console.log(JSON.stringify(err));
     })
 
+
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      console.log(JSON.stringify(notification));
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
             console.log('registration ID = ' + notification.regid);
+              $http.post(pagina+'/token/', {face_id: window.localStorage['idface'],token:notification.regid}).
+              success(function(data, status, headers, config) {
+                console.log(JSON.stringify(data));
+              });
           }
           break;
 
@@ -62,13 +72,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       }
     });
 
-
-    // WARNING: dangerous to unregister (results in loss of tokenID)
-    $cordovaPush.unregister().then(function(result) {
-      // Success!
-    }, function(err) {
-      // Error
-    })
 
   }, false);
 })

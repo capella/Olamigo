@@ -4,22 +4,20 @@
 
 <div class="list">
 
-	   <label class="item item-input item-select">
+  <label class="item item-input item-select">
     <div class="input-label">
       Categoria:
     </div>
-    <select>
-      <option>Blue</option>
-      <option selected>Green reen reen</option>
-      <option>Red</option>
+    <select ng-options="size for size in atividades_lista " ng-model="cat2" ng-change="update()">
     </select>
   </label>
 
-    <a class="item item-thumbnail-left" href="#" ng-repeat="atividade in atividades">
-      <img src="cover.jpg">
-      <p>{{atividade.obj.activet.name}}</p>
+    <a class="item item-thumbnail-left" href="#" ng-repeat="atividade in atividades" ng-click="invite1(atividade.obj.face_id)">
+      <img src="https://graph.facebook.com/v2.3/{{atividade.obj.face_id}}/picture">
+      <p>{{atividade.obj.activity.name}}</p>
       <h3>{{atividade.obj.name}}</h3>
-      <h3>{{atividade.obj.face_id}}</h3>
+      <h3>{{atividade.obj.category}}</h3>
+      <h3>{{atividade.dist | number:2}}</h3>
     </a>
 
 
