@@ -69,7 +69,8 @@ angular.module('starter.controllers', [])
     { url: '#/app/acontecendo', text: 'Home' },
     { url: '#/app/gostos', text: 'Gostos' },
     { url: '#/app/interacoes', text: 'Interações' },
-    { url: '#/app/chat', text: 'Chat' }
+    { url: '#/app/chat', text: 'Chat' },
+    { url: '#/app/playlists',text:'Playlist'}
   ];
 
   $scope.User = User.data();
@@ -184,6 +185,23 @@ var confirmado = [];
   ];
 })
 
+.controller('ChatCtrl', function($scope, $stateParams) {
+  $scope.chat = [
+    { image: '../img/comedies.png', nome:"Comedies Movies"},
+    { image: '../img/action.png', nome:"Action Movies"},
+    { image: '../img/terror.jpeg', nome:"Terror Movies"},
+    { image: '../img/romance.jpeg', nome:"Romance Movies"},
+    { image: '../img/rock.jpeg', nome:"Rock Bands"},
+    { image: '../img/metal.jpeg', nome:"Metal Bands"},
+    { image: '../img/eletronic.jpeg', nome:"Eletronic Bands"},
+    { image: '../img/classic.jpeg', nome:"Classic Concerts"},
+    { image: '../img/adventures.jpeg', nome:"Adventures"},
+    { image: '../img/playmusic.jpeg', nome:"Playing Music"}
+
+  ];
+})
+.controller('ChatShowCtrl', function($scope, $stateParams) {
+})
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
