@@ -9,8 +9,7 @@ var router = express.Router();
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
 
-var GCM = require('gcm').GCM;
-
+var gcm = require("node-gcm");
 var Person = require('../Models/Person');
 Person.methods(['get', 'post', 'put', 'delete']);
 Person.register(router,'/person');
@@ -158,25 +157,49 @@ router.post('/invite', function (req, res) {
                 }
             }
 
+            var gcm = require('node-gcm');
 
-            var gcm = new GCM(apiKey);
+            var message = new gcm.Message();
+            var sender = new gcm.Sender(apiKey);
+            var registrationIds = [];
 
-            var message = {
-                registration_id: fi.token, // required
-                collapse_key: 'Collapse key',
-                'data.key1': 'Requested',
-                'data.key2': fii.face_id,
-                'message': "You`ve got an invite",
-                'mensagem': "You`ve got an invite"
-            };
+            message.addData('title','You`ve got a message');
+            message.addData('message',fii+" wants to talk to you");
+            //message.addData('msgcnt','1');
+            message.collapseKey = 'demo';
+            message.delayWhileIdle = true;
+            message.timeToLive = 3;
 
-            gcm.send(message, function(err, messageId){
-                if (err) {
-                    console.log("Something has gone wrong!");
-                } else {
-                    console.log("Sent invite with message ID: ", messageId);
-                }
+            // At least one token is required - each app will register a different token
+            registrationIds.push(fii.token);
+
+            /**
+             * Parameters: message-literal, registrationIds-array, No. of retries, callback-function
+             */
+            sender.send(message, registrationIds, 4, function (result) {
+                console.log(result);
             });
+            /** Use the following line if you want to send the message without retries
+             sender.sendNoRetry(message, registrationIds, function (result) { console.log(result); });
+             **/
+            //var gcm = new GCM(apiKey);
+            //
+            //var message = {
+            //    registration_id: fi.token, // required
+            //    collapse_key: 'Collapse key',
+            //    'data.key1': 'Requested',
+            //    'data.key2': fii.face_id,
+            //    'message': "You`ve got an invite",
+            //    'mensagem': "You`ve got an invite"
+            //};
+            //
+            //gcm.send(message, function(err, messageId){
+            //    if (err) {
+            //        console.log("Something has gone wrong!");
+            //    } else {
+            //        console.log("Sent invite with message ID: ", messageId);
+            //    }
+            //});
             res.json({status: 'ok'});
         }
     });
