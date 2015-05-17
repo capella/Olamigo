@@ -117,7 +117,7 @@ router.post('/c', function (req, res) {
         message.addData('type', 'confirm');
         message.addData('title', 'You`ve got a message');
         message.addData('message', "sua mae wants to talk to you");
-        message.addData('face_id', fi.face_id);
+        message.addData('face_id', "");
         message.addData('OK', ok);
         message.collapseKey = 'demo';
         message.delayWhileIdle = true;
