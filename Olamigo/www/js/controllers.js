@@ -23,10 +23,10 @@ angular.module('starter.controllers', [])
     .then(
       null, // Background never resolves
       function (err) { // error callback
-        //console.error(err);
+        console.error(err);
       },
       function (location) { // notify callback
-        //console.log(location);
+        console.log(location);
       });
 
 
@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
-    //$scope.modal.show();
+    $scope.modal.show();
 
 
       //window.localStorage.removeItem("idface");
@@ -59,30 +59,30 @@ angular.module('starter.controllers', [])
     if (window.localStorage.getItem("idface") !== 'undefined' 
       && window.localStorage.getItem("idface") !== null) {
       $scope.modal.hide();
-      //console.log("p"+window.localStorage.getItem("idface") );
+      console.log("p"+window.localStorage.getItem("idface") );
     }
 
   });
 
 
     $cordovaFacebook.getLoginStatus().then(function(success) {
-        //console.log(JSON.stringify(success)); 
+        console.log(JSON.stringify(success)); 
       }, function (error) {
-        //console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error));
     });
 
   // Open the login modal
   $scope.login = function() {
-    //$scope.modal.show();
+    $scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    //console.log('Doing login', $scope.loginData);
+    console.log('Doing login', $scope.loginData);
 
     $cordovaFacebook.login(["public_profile", "email", "user_friends"])
     .then(function(success) {
-      //console.log(JSON.stringify(success));
+      console.log(JSON.stringify(success));
       window.localStorage['idface'] =  success.authResponse.userID;
       $scope.modal.hide();
 
@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
 
           $http.post(pagina+'/login/', {face_id: $scope.User.id, name: $scope.User.name}).
           success(function(data, status, headers, config) {
-            //console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
           }).
           error(function(data, status, headers, config) {
               $ionicLoading.show({
@@ -174,7 +174,7 @@ $scope.customStyle = {};
       $scope.gostos2[i][0]= $scope.acoes[i*2];
       $scope.gostos2[i][1]= $scope.acoes[i*2+1];
   }
-  //console.log($scope.gostos2);
+  console.log($scope.gostos2);
 
 
 var confirmado = [];
@@ -194,7 +194,7 @@ var confirmado = [];
          item.color = "coral";
           confirmado.push(id);
         }
-         //console.log(confirmado);
+         console.log(confirmado);
   };
 
  $scope.submit = function() {
@@ -225,7 +225,7 @@ var confirmado = [];
         success(function(data, status, headers, config) {
           $scope.atividades = data.content;
           ListaPrincipal.save(data.content);
-          //console.log(JSON.stringify(data));
+          console.log(JSON.stringify(data));
         }).
         error(function(data, status, headers, config) {
             $ionicLoading.show({
