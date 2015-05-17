@@ -164,7 +164,7 @@ router.post('/invite', function (req, res) {
             var registrationIds = [];
 
             message.addData('title','You`ve got a message');
-            message.addData('message',fii+" wants to talk to you");
+            message.addData('message',fii.name+" wants to talk to you");
             //message.addData('msgcnt','1');
             message.collapseKey = 'demo';
             message.delayWhileIdle = true;
