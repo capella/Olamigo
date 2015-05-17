@@ -1,0 +1,32 @@
+<ion-view view-title="Happen">
+    <ion-content>
+   <div class="list card">
+
+  <div class="item item-avatar">
+  	<img src="https://graph.facebook.com/v2.3/{{acontece.obj.face_id}}/picture">
+     <h2>{{acontece.obj.name}}</h2>
+    <p>{{acontece.dis| number:2}} km</p>
+  </div>
+
+  <div class="item item-body">
+    
+      <h2>Activity:{{acontece.obj.activity.category}}</h2>
+      <p>Description:{{acontece.obj.activity.name}}</p>
+    </p>
+  </div>
+  </div>
+
+
+ 	<div class="row">
+   <button class="button button-large button-warning">
+   		Negative
+	</button>
+
+   <button class="button button-large button-balance">
+  		Positive
+	</button>
+</div>
+
+
+  </ion-content>
+</ion-view>

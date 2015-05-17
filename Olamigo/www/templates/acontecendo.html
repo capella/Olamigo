@@ -1,4 +1,4 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Olamigo">
   <ion-content has-header="true">
 
 
@@ -12,9 +12,9 @@
     </select>
   </label>
 
-    <a class="item item-thumbnail-left" href="#" ng-repeat="atividade in atividades" ng-click="invite1(atividade.obj.face_id)">
+<a class="item item-thumbnail-left" href="#/app/acontecendo_show/{{atividade.obj.face_id}}" ng-repeat="atividade in atividades">
       <img src="https://graph.facebook.com/v2.3/{{atividade.obj.face_id}}/picture">
-      <p>{{atividade.obj.activity.name}}</p>
+
       <h3>{{atividade.obj.name}}</h3>
       <h3>{{atividade.obj.category}}</h3>
       <h3>{{atividade.dist | number:2}}</h3>

@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.login = function() {
-    //$scope.modal.show();
+    $scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
@@ -133,7 +133,8 @@ angular.module('starter.controllers', [])
     { url: '#/app/gostos', text: 'Gostos' },
     { url: '#/app/interacoes', text: 'Interações' },
     { url: '#/app/chat', text: 'Chat' },
-    { url: '#/app/playlists',text:'Playlist'}
+    { url: '#/app/playlists',text:'Playlist'},
+    { url: '#/app/request',text:'Request'}
   ];
 
   $scope.User = User.data();
@@ -270,6 +271,7 @@ var confirmado = [];
             });
     });
 
+
     $scope.invite1 = function(face_id){
 
          $http.post(pagina+'/invite/', {face_id: face_id, face_id_interessado: window.localStorage['idface']}).
@@ -284,9 +286,13 @@ var confirmado = [];
             });
 
     }
+})
 
 
 
+.controller('AcontecendoShowCtrl', function($scope, $stateParams, ListaPrincipal) {
+   console.log($stateParams.id);
+  $scope.acontece = ListaPrincipal.get($stateParams.id);
 
 })
 
@@ -316,7 +322,39 @@ var confirmado = [];
 
   ];
 })
-.controller('ChatShowCtrl', function($scope, $stateParams) {
+.controller('ChatShowCtrl', function($scope, $stateParams, ListaPrincipal) {
+})
+.controller('RequestCtrl', function($scope, $stateParams) {
+  $scope.request = [];
+   $scope.atividades = [];
+
+   var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      $http.post(pagina+'/location/getNearest/', {face_id: 4, geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
+        success(function(data, status, headers, config) {
+          $scope.atividades = data.content;
+          ListaPrincipal.save(data.content);
+          console.log(JSON.stringify(data));
+        }).
+        error(function(data, status, headers, config) {
+            $ionicLoading.show({
+              template: 'Connection Erro',
+              duration: 1500
+            });
+        });
+    }, function(err) {
+      $ionicLoading.show({
+              template: 'Verify your GPS!!!',
+              duration: 1500
+            });
+    });
+})
+.controller('RequestShowCtrl', function($scope, $stateParams) {
+    console.log($stateParams.id);
+  $scope.acontece = ListaPrincipal.get($stateParams.id);
+
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

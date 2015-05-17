@@ -1,8 +1,7 @@
-
-<ion-view view-title="Chat">
+<ion-view view-title="Choose Request">
   <ion-content>
      <ion-list>
-      <a class="item item-avatar" ng-repeat="user in chat" href="#/app/chat_show/{{chat.id}}">
+      <a class="item item-avatar" ng-repeat="user in request" href="#/app/request_show/{{user.id}}">
          <img src="  {{user.image}}">
         {{user.nome}}
         <h2></h2>
@@ -13,4 +12,3 @@
 </div>
   </ion-content>
 </ion-view>
-

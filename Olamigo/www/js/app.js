@@ -112,6 +112,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     }
   })
 
+ 
+  .state('app.acontecendo_show', {
+    url: "/acontecendo_show/:id",
+    views: {
+      'menuContent': {
+        controller: 'AcontecendoShowCtrl',
+        templateUrl: "templates/acontecendo_show.html"
+      }
+    }
+  })
+
+
+
+  .state('app.request_show', {
+    url: "/request_show/:Id",
+    views: {
+      'menuContent': {
+        controller: 'RequestShowCtrl',
+        templateUrl: "templates/request_show.html"
+      }
+    }
+  })
+
+
   //Mostra as ultimas interacoes da atividade
   .state('app.atividades', {
     url: "/atividades",
@@ -160,7 +184,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
   //CHAT GERAL
   .state('app.chat_show', {
-    url: "/chat_show/:Id",
+    url: "/chat_show/:id",
     views: {
       'menuContent': {
         controller: 'ChatShowCtrl',
