@@ -88,21 +88,21 @@ router.post('/getNearest', function (req, res) {
                     /*Atualiza os scores, segunda medida de sort*/
 
 
-                    for (var z = 0; z < myres.length; z++)
-                    {
-                        if (!myres[z].obj.activity)
-                            myres.splice(z, 1);
+                    //for (var z = 0; z < myres.length; z++)
+                    //{
+                    //    if (!myres[z].obj.activity)
+                    //        myres.splice(z, 1);
+                    //
+                    //    if(myres[z].obj.activity && myres[z].obj.activity.category == mycat)
+                    //    {
+                    //        newres.push(myres[z]);
+                    //        myres.splice(z, 1);
+                    //    }
+                    //}
+                    //
+                    //newres = newres.concat(myres);
 
-                        if(myres[z].obj.activity && myres[z].obj.activity.category == mycat)
-                        {
-                            newres.push(myres[z]);
-                            myres.splice(z, 1);
-                        }   
-                    }
-
-                    newres = newres.concat(myres);
-
-                    res.json({status: 'ok', content: newres});
+                    res.json({status: 'ok', content: myres});
                 }
             }
         );
