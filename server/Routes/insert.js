@@ -32,7 +32,7 @@ router.delete('/', function (req, res)
             res.json({status: 'ok', content: products});
         }
     });
-})
+});
 
 //retrun router
 module.exports = router;

@@ -4,8 +4,6 @@
 
 var Person = require('../Models/Person');
 
-var yo;
-
 exports.CreatePerson = function (face_id, position, name, res)
 {
     var person = new Person(
@@ -27,6 +25,4 @@ exports.CreatePerson = function (face_id, position, name, res)
     };
 
     person.save(callback);
-
-    console.log(yo);
 };
