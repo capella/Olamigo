@@ -84,7 +84,7 @@ router.post('/bigode', function (req, res) {
     });
 });
 
-router.post('/confirm', function (req, res) {
+router.post('/c', function (req, res) {
     var face_id = req.body.face_id;
     var face_id_interessado = req.body.face_id_interessado;
     var ok = req.body.ok;
