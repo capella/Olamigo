@@ -143,15 +143,16 @@ router.post('/invite', function (req, res) {
             res.json({status: 'ok'});
             var fi;
             var fii;
-
+            console.log(person, face_id, face_id_interessado);
             for (var i = 0; i < person.length; i++) {
-                console.log(person[i]);
-                if(person[i] == face_id)
+                if(person[i].face_id == face_id)
                 {
+                    console.log(person[i]);
                     fi = person[i];
                 }
-                if(person[i] == face_id_interessado)
+                if(person[i].face_id == face_id_interessado)
                 {
+                    console.log(person[i]);
                     fii = person[i];
                 }
             }
