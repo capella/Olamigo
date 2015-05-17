@@ -5,7 +5,6 @@
 //Dependencies
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
 var match = require("./match");
 var modules = require('../Modules/Helpers');
 
