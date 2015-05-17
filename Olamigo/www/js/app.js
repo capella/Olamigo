@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            console.log('registration ID = ' + notification.regid);
+          console.log('registration ID = ' + notification.regid);
           }
           break;
 
@@ -109,9 +109,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
     }
   })
 
- //Lista as atuvidades atuais que estao por perto
+ 
   .state('app.acontecendo_show', {
-    url: "/acontecendo_show/:Id",
+    url: "/acontecendo_show/:id",
     views: {
       'menuContent': {
         controller: 'AcontecendoShowCtrl',
@@ -121,18 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
   })
 
 
-//Lista as atuvidades atuais que estao por perto
-  .state('app.request', {
-    url: "/request",
-    views: {
-      'menuContent': {
-        controller: 'RequestCtrl',
-        templateUrl: "templates/request.html"
-      }
-    }
-  })
 
- //Lista as atuvidades atuais que estao por perto
   .state('app.request_show', {
     url: "/request_show/:Id",
     views: {
@@ -142,6 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
       }
     }
   })
+
 
   //Mostra as ultimas interacoes da atividade
   .state('app.atividades', {
@@ -191,7 +181,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'services', 'ngCordov
 
   //CHAT GERAL
   .state('app.chat_show', {
-    url: "/chat_show/:Id",
+    url: "/chat_show/:id",
     views: {
       'menuContent': {
         controller: 'ChatShowCtrl',

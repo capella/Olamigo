@@ -39,9 +39,12 @@ angular.module('services', [])
     all: function() {
       return lista;
     },
-    get: function(Id) {
-      // Simple index lookup
-      return lista[Id];
+    get: function(id) {
+        for(i=0;i<lista.length;i++){
+          if(lista[i].obj.face_id == id){
+            return lista[i];
+          }
+        }
     },
     atualizac: function(Id, num) {
       lista[Id].likes += num;

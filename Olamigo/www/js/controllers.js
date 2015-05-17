@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
 
       //window.localStorage.removeItem("idface");
 
-      //console.log("p"+window.localStorage.getItem("idface") );
+      console.log("p"+window.localStorage.getItem("idface") );
 
     if (window.localStorage.getItem("idface") !== 'undefined' 
       && window.localStorage.getItem("idface") !== null) {
@@ -221,7 +221,7 @@ var confirmado = [];
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      $http.post(pagina+'/location/getNearest/', {face_id: window.localStorage['idface'], geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
+      $http.post(pagina+'/location/getNearest/', {face_id: 4, geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
         success(function(data, status, headers, config) {
           $scope.atividades = data.content;
           ListaPrincipal.save(data.content);
@@ -241,7 +241,10 @@ var confirmado = [];
     });
 })
 
-.controller('AcontecendoShowCtrl', function($scope, $stateParams) {
+.controller('AcontecendoShowCtrl', function($scope, $stateParams, ListaPrincipal) {
+   console.log($stateParams.id);
+  $scope.acontece = ListaPrincipal.get($stateParams.id);
+
 })
 
 .controller('NovaAtividadeCtrl', function($scope) {
@@ -270,24 +273,39 @@ var confirmado = [];
 
   ];
 })
-.controller('ChatShowCtrl', function($scope, $stateParams) {
+.controller('ChatShowCtrl', function($scope, $stateParams, ListaPrincipal) {
 })
 .controller('RequestCtrl', function($scope, $stateParams) {
   $scope.request = [
-    { image: '../img/comedies.png', nome:"Comedies Movies"},
-    { image: '../img/action.png', nome:"Action Movies"},
-    { image: '../img/terror.jpeg', nome:"Terror Movies"},
-    { image: '../img/romance.jpeg', nome:"Romance Movies"},
-    { image: '../img/rock.jpeg', nome:"Rock Bands"},
-    { image: '../img/metal.jpeg', nome:"Metal Bands"},
-    { image: '../img/eletronic.jpeg', nome:"Eletronic Bands"},
-    { image: '../img/classic.jpeg', nome:"Classic Concerts"},
-    { image: '../img/adventures.jpeg', nome:"Adventures"},
-    { image: '../img/playmusic.jpeg', nome:"Playing Music"}
+   $scope.atividades = [];
 
-  ];
+   var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      $http.post(pagina+'/location/getNearest/', {face_id: 4, geo: position.coords.latitude+","+position.coords.longitude, dist:1}).
+        success(function(data, status, headers, config) {
+          $scope.atividades = data.content;
+          ListaPrincipal.save(data.content);
+          console.log(JSON.stringify(data));
+        }).
+        error(function(data, status, headers, config) {
+            $ionicLoading.show({
+              template: 'Connection Erro',
+              duration: 1500
+            });
+        });
+    }, function(err) {
+      $ionicLoading.show({
+              template: 'Verify your GPS!!!',
+              duration: 1500
+            });
+    });
 })
 .controller('RequestShowCtrl', function($scope, $stateParams) {
+    console.log($stateParams.id);
+  $scope.acontece = ListaPrincipal.get($stateParams.id);
+
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
