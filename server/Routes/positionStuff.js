@@ -26,19 +26,16 @@ router.post('/updatePos', function (req, res) {
     Person.update({face_id: face_id}, {$set: {location: [lon, lat]}},
         function (err)
         {
-            if (err) {
-                OK = false;
+            if(err)
+            {
+                res.json({status: 'ok'});
+            }
+            else
+            {
+                res.json({status: 'error'});
             }
         });
 
-    if(OK)
-    {
-        res.json({status: 'ok'});
-    }
-    else
-    {
-        res.json({status: 'error'});
-    }
 });
 
 router.post('/getNearest', function (req, res) {

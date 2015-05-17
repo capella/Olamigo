@@ -2,10 +2,6 @@
  * Created by Scaroni on 16/05/2015.
  */
 
-/**
- * Created by Scaroni on 16/05/2015.
- */
-
 //Dependencies
 var express = require('express');
 var router = express.Router();
@@ -19,6 +15,7 @@ Person.register(router,'/person');
 
 PersonUtilities = require("../Modules/Helpers");
 
+//logs in a user with face_id
 router.post('/login', function (req, res) {
     var name = req.body['name'];
     var face_id = req.body.face_id;
@@ -38,6 +35,26 @@ router.post('/login', function (req, res) {
                     return;
                 }
                 res.json({status: 'ok', content: person});
+            }
+        }
+    );
+});
+
+//sets a Token  on a user identifyied by face_id
+router.post('/token', function (req, res) {
+    var token = req.body.token;
+    var face_id = req.body.face_id;
+
+    Person.update({face_id: face_id},{$set: {token: token}},
+        function(err)
+        {
+            if(err)
+            {
+                res.status(500).send({status: 'error', content: err.message});
+            }
+            else
+            {
+                res.json({status: 'ok'});
             }
         }
     );

@@ -11,7 +11,8 @@ var mongoose = restful.mongoose;
 var personSchema = new mongoose.Schema({
     name: String,
     face_id: {type: Number, required: true, unique: true},
-    location: {type: [Number], index: '2d'}
+    location: {type: [Number], index: '2d'},
+    token: String
 });
 
 // Return model
