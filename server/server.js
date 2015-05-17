@@ -7,7 +7,7 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/olamigo");
+mongoose.connect("mongodb://localhost/banana");
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -23,4 +23,5 @@ app.use('/gostos',require('./Modules/gostos'));
 app.use('/atividades',require('./Modules/atividades'));
 
 app.listen(6969);
-console.log('API is running on port 6969');
+console.log('API is running on the sexy port');
+
