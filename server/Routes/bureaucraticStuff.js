@@ -95,42 +95,38 @@ router.post('/confirm', function (req, res) {
     else
     {
         res.json({status: 'ok'});
-            var fi;
-            var fii;
+        var fi;
+        var fii;
 
-            for (var i = 0; i < person.length; i++) {
-                console.log(person[i]);
-                if(person[i] == face_id)
-                {
-                    fi = person;
-                }
-                if(person[i] == face_id_interessado)
-                {
-                    fii = person;
-                }
+        for (var i = 0; i < person.length; i++) {
+            console.log(person[i]);
+            if (person[i] == face_id) {
+                fi = person;
             }
-
-            var GCM = require('gcm').GCM;
-
-            var gcm = new GCM(apiKey);
-
-            var message = {
-                registration_id: fii.token, // required
-                collapse_key: 'Collapse key',
-                'data.key1': ok
-                //'data.key2': fii.token
-            };
-
-            gcm.send(message, function(err, messageId){
-                if (err) {
-                    console.log("Something has gone wrong!");
-                } else {
-                    console.log("Sent with message ID: ", messageId);
-                }
-            });
+            if (person[i] == face_id_interessado) {
+                fii = person;
+            }
         }
-    });
 
+        var GCM = require('gcm').GCM;
+
+        var gcm = new GCM(apiKey);
+
+        var message = {
+            registration_id: fii.token, // required
+            collapse_key: 'Collapse key',
+            'data.key1': ok
+            //'data.key2': fii.token
+        };
+
+        gcm.send(message, function(err, messageId){
+            if (err) {
+                console.log("Something has gone wrong!");
+            } else {
+                console.log("Sent with message ID: ", messageId);
+            }
+        });
+    }
 });
 
 router.post('/invite', function (req, res) {
