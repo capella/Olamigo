@@ -93,8 +93,7 @@ router.post('/confirm', function (req, res) {
     {
         res.status(500).send({status: 'error', content: err.message});
     }
-    else
-    {
+    else {
         res.json({status: 'ok'});
         var fi;
         var fii;
@@ -108,26 +107,30 @@ router.post('/confirm', function (req, res) {
                 fii = person[i];
             }
         }
-
-        var GCM = require('gcm').GCM;
-
-        var gcm = new GCM(apiKey);
-
-        var message = {
-            registration_id: fii.token, // required
-            collapse_key: 'Collapse key',
-            'message': ok,
-            'data.key1': fi.face_id
-        };
-
-        gcm.send(message, function(err, messageId){
-            if (err) {
-                console.log("Something has gone wrong!");
-            } else {
-                console.log("Sent confirm with message ID: ", messageId);
-            }
-        });
     }
+
+    var message = new gcm.Message();
+    var sender = new gcm.Sender(apiKey);
+    var registrationIds = [];
+
+    message.addData('title','You`ve got a message');
+    message.addData('message',fi.name+" wants to talk to you");
+    message.addData('face_id',fi.face_id);
+    message.addData('OK', ok);
+    message.collapseKey = 'demo';
+    message.delayWhileIdle = true;
+    message.timeToLive = 3;
+
+    // At least one token is required - each app will register a different token
+    registrationIds.push(fii.token);
+
+    /**
+     * Parameters: message-literal, registrationIds-array, No. of retries, callback-function
+     */
+    sender.send(message, registrationIds, 4, function (result) {
+        console.log(result);
+    });
+    res.json({status: 'ok'});
 });
 
 router.post('/invite', function (req, res) {
@@ -157,7 +160,6 @@ router.post('/invite', function (req, res) {
                 }
             }
 
-            var gcm = require('node-gcm');
 
             var message = new gcm.Message();
             var sender = new gcm.Sender(apiKey);
@@ -171,7 +173,7 @@ router.post('/invite', function (req, res) {
             message.timeToLive = 3;
 
             // At least one token is required - each app will register a different token
-            registrationIds.push(fii.token);
+            registrationIds.push(fi.token);
 
             /**
              * Parameters: message-literal, registrationIds-array, No. of retries, callback-function
@@ -182,24 +184,24 @@ router.post('/invite', function (req, res) {
             /** Use the following line if you want to send the message without retries
              sender.sendNoRetry(message, registrationIds, function (result) { console.log(result); });
              **/
-            //var gcm = new GCM(apiKey);
-            //
-            //var message = {
-            //    registration_id: fi.token, // required
-            //    collapse_key: 'Collapse key',
-            //    'data.key1': 'Requested',
-            //    'data.key2': fii.face_id,
-            //    'message': "You`ve got an invite",
-            //    'mensagem': "You`ve got an invite"
-            //};
-            //
-            //gcm.send(message, function(err, messageId){
-            //    if (err) {
-            //        console.log("Something has gone wrong!");
-            //    } else {
-            //        console.log("Sent invite with message ID: ", messageId);
-            //    }
-            //});
+                //var gcm = new GCM(apiKey);
+                //
+                //var message = {
+                //    registration_id: fi.token, // required
+                //    collapse_key: 'Collapse key',
+                //    'data.key1': 'Requested',
+                //    'data.key2': fii.face_id,
+                //    'message': "You`ve got an invite",
+                //    'mensagem': "You`ve got an invite"
+                //};
+                //
+                //gcm.send(message, function(err, messageId){
+                //    if (err) {
+                //        console.log("Something has gone wrong!");
+                //    } else {
+                //        console.log("Sent invite with message ID: ", messageId);
+                //    }
+                //});
             res.json({status: 'ok'});
         }
     });
